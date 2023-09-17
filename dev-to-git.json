@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": 1588770,
+    "relativePathToArticle": "./blog-posts/Basic Web-Scraping Project Setup/post.md"
+  },
+  {
+    "id": 1591473,
+    "relativePathToArticle": "./blog-posts/UpWork Job Requirements To High-Level Python Code/post.md"
+  },
+  {
+    "id": 1602093,
+    "relativePathToArticle": "./blog-posts/Using Helium To Scrape Reedsy.com/post.md"
+  }
+]
+
