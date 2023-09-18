@@ -1,7 +1,7 @@
 ---
 published: false
 title: 'Analyzing Zomato To Decide Scraping Strategy'
-cover_image: './assets/cover.jpg'
+# cover_image: './assets/cover.jpg'
 description: 'Analyzing Zomato To Decide Scraping Strategy'
 tags: webscraping, decisionmaking, http, tutorial
 series: 'Web Scraping Project - zomato.com'
