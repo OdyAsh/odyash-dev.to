@@ -1,0 +1,5 @@
+{
+    // related to paste image extension:
+    // https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
+    "pasteImage.path": "${currentFileDir}/assets"
+}
