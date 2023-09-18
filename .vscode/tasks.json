@@ -1,19 +1,19 @@
-  // {
-  //   "version": "2.0.0",
-  //   "tasks": [
-  //     {
-  //       "label": "Resume Latest Edit Session",
-  //       "type": "shell",
-  //       "command": "code",
-  //       "args": [
-  //         "--wait",
-  //         "--goto",
-  //         // doesn't work, gives the error "could not resume changes from the cloud for id {0}"
-  //         "${command:workbench.editSessions.actions.resumeLatest}"
-  //       ],
-  //       "isBackground": true,
-  //       "problemMatcher": []
-  //     }
-  //   ]
-  // }
+  {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Resume Latest Edit Session",
+        "type": "shell",
+        "command": "code",
+        "args": [
+          "--wait",
+          "--goto",
+          // doesn't work, gives the error "could not resume changes from the cloud for id {0}"
+          "${command:workbench.editSessions.actions.resumeLatest}"
+        ],
+        "isBackground": true,
+        "problemMatcher": []
+      }
+    ]
+  }
   
