@@ -1,6 +1,7 @@
 ---
 published: false
 title: 'Analyzing Zomato To Decide Scraping Strategy'
+cover_image: './assets/cover.jpg'
 description: 'Analyzing Zomato To Decide Scraping Strategy'
 tags: webscraping, decisionmaking, http, tutorial
 series: 'Web Scraping Project - zomato.com'
@@ -18,7 +19,7 @@ canonical_url:
 
 Since I currently reside in the Middle East, the website redirects me to Beirut, which is unavailable, so we scroll down, and see that only India and UAE can be currently scraped: 
 
-![zomato only available in india and uae](assets/1.%20zomato%20only%20available%20in%20india%20and%20uae.png)
+![zomato only available in india and uae](./assets/1.%20zomato%20only%20available%20in%20india%20and%20uae.png 'zomato only available in india and uae')
 
 
 Therefore, we'll be scraping from these two sub-pages only:
@@ -31,7 +32,7 @@ Note: For the rest of this series, we'll be working with the India sub-page, and
 
 First of all, we want to scrape the restaurants in each of these cities:
 
-![india cities](assets/2.%20india%20cities.png)
+![india cities](./assets/2.%20india%20cities.png)
 
 Side note: Notice that when we click on any of the cities above, the URL changes to something like this:
 ```
@@ -49,13 +50,13 @@ We'll go with the latter option :].
 
 The screenshot below shows us that some of the requirements can already be obtained from the `agra` sub-page:
 
-![agra restaurants cards](assets/3.%20agra%20restaurants%20cards.png)
+![agra restaurants cards](./assets/3.%20agra%20restaurants%20cards.png)
 
 However, these are obviously not all the requirements, so let's check visit one of these restaraunts to see where we can find the rest of the info:
 
-![la pinoz pizza order page](assets/4.%20la%20pinoz%20pizza%20orders%20page.png)
+![la pinoz pizza order page](./assets/4.%20la%20pinoz%20pizza%20orders%20page.png)
 
-![la pinoz pizza overview page](assets/5.%20la%20pinoz%20pizza%20overview%20page.png)
+![la pinoz pizza overview page](./assets/5.%20la%20pinoz%20pizza%20overview%20page.png)
 
 Now, that we know what to scrap and where to scrap it from, we decide on a very important factor: **the library to use for scraping**.
 
@@ -116,7 +117,7 @@ Now, let's check how the data is loaded in Zomato. We'll do this by checking the
 
 First, let's check the page's source code in the `agra` sub-page:
 
-![zomato page source code](assets/6.%20zomato%20page%20source%20code.png)
+![zomato page source code](./assets/6.%20zomato%20page%20source%20code.png)
 
 As we can see, the data is not embedded in the HTML page itself, so it's probably loaded dynamically. Side note: If you check the page's source code, you'll notice that the restaurants' data at the top (e.g., La Pino'z Pizza) is actually embedded in the HTML page itself, but it's not the data we're looking for; it's just the data needed to render the page, and then the data we're looking for is loaded dynamically.
 
@@ -124,7 +125,7 @@ However, the data in the main India sub-page is embedded in the HTML page itself
 
 Now, let's check the network tab in the developer tools in the `agra` sub-page:
 
-![zomato network tab](assets/7.%20zomato%20network%20tab.png)
+![zomato network tab](./assets/7.%20zomato%20network%20tab.png)
 
 As we can see, the data is loaded dynamically, so we'll be using an HTTP client library (`requests`) to scrape it.
 
