@@ -19,7 +19,7 @@ canonical_url:
 
 Since I currently reside in the Middle East, the website redirects me to Beirut, which is unavailable, so we scroll down, and see that only India and UAE can be currently scraped: 
 
-![zomato only available in india and uae](./assets/1.%20zomato%20only%20available%20in%20india%20and%20uae.png 'zomato only available in india and uae')
+![zomato only available in india and uae](./assets/1.%20zomato%20only%20available%20in%20india%20and%20uae.png)
 
 
 Therefore, we'll be scraping from these two sub-pages only:
@@ -133,12 +133,22 @@ However, if we encounter any anti-scraping techniques, then we'll use a web brow
 
 
 &nbsp;
-## Setting Up The Project
+## Testing the HTTP Client Library
 
-Now that we've decided on the library to use, we can start setting up the project.
+Now, let's test the HTTP client library (`requests`) to see if it works.
 
-...
+First, we'll send a request to the `india` sub-page, and see if we get a response:
 
+![testing requests library.png](./assets/7. testing requests library.png)
+
+As we can see, we got "Access Denied" (403 status code), but before we jump to conclusions, let's try sending headers with the request:
+
+```python
+country_code = requests.get(country_url, headers={'User-Agent': 'Mozilla/5.0'}).status_code
+# returns a 200 status code
+```
+
+As we can see, we got a response, so the library works :]!
 
 
 
