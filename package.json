@@ -4,7 +4,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/OdyAsh/odyash-dev.to.git"
-  },  "scripts": {
+  },
+  "scripts": {
     "prettier": "prettier",
     "embedme": "embedme blog-posts/**/*.md",
     "prettier:base": "yarn run prettier \"**/*.{js,json,scss,md,ts,html,component.html}\"",
@@ -19,8 +20,5 @@
     "dev-to-git": "1.4.10",
     "embedme": "1.22.1",
     "prettier": "2.8.8"
-  },
-  "devDependencies": {
-    "glob": "^11.0.2"
   }
 }

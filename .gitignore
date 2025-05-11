@@ -1,3 +1,7 @@
-node_modules
+# Files
+.specstory/.what-is-this.md
 blog-posts/Web Scraping Project - zomato.com/*
 blog-posts/web-scraping/Zomato/*
+
+# Folders
+node_modules/

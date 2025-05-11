@@ -1,0 +1,91 @@
+```mermaid
+graph TD
+    %% Main brain structure
+    brain((("Human Brain")))
+    style brain fill:#f9f9f9,stroke:#555,stroke-width:2px,color:#333
+
+    %% The four levels of thinking with their corresponding approaches
+    subgraph "Brain Processing Complexity Levels"
+        lvl1["Level 1: Abstract Connected Problems
+        (Strategic Thinking)"]
+        style lvl1 fill:#FFDDF4,stroke:#ff69b4,stroke-width:3px,color:#333
+        
+        lvl2["Level 2: Concrete Connected Problems
+        (Technical Decision Making)"]
+        style lvl2 fill:#E6CCFA,stroke:#9370db,stroke-width:3px,color:#333
+        
+        lvl3["Level 3: Complex Isolated Problems
+        (Tactical Problem Solving)"]
+        style lvl3 fill:#B3C0FF,stroke:#0000CD,stroke-width:3px,color:#333
+        
+        lvl4["Level 4: Simple Isolated Problems
+        (Function Implementation)"]
+        style lvl4 fill:#D6EBF9,stroke:#87CEFA,stroke-width:3px,color:#333
+    end    
+    %% AI relationship with each level
+    subgraph "AI Assistance Effectiveness"
+        ai1["🧠➕🤖 Human-driven
+        AI as Consultant
+        For novel domains or specialized requirements"]
+        style ai1 fill:#FFDDF4,stroke:#ff69b4,stroke-width:2px,color:#333
+        
+        ai2["🧠➕🤖 Human-guided
+        AI as Implementer
+        When requirements are well-understood"]
+        style ai2 fill:#E6CCFA,stroke:#9370db,stroke-width:2px,color:#333
+        
+        ai3["🧠➕🤖 / 🤖➕🧠
+        Collaborative or AI-driven
+        With human oversight"]
+        style ai3 fill:#B3C0FF,stroke:#0000CD,stroke-width:2px,color:#333
+        
+        ai4["🤖➕🧠 AI-driven
+        High Accuracy
+        Minimal oversight needed"]
+        style ai4 fill:#D6EBF9,stroke:#87CEFA,stroke-width:2px,color:#333
+    end
+
+    %% Connection between brain and levels of thinking
+    brain --> lvl1
+    brain --> lvl2
+    brain --> lvl3
+    brain --> lvl4
+      %% Connection between levels and AI usage
+    lvl1 --> ai1
+    lvl2 --> ai2
+    lvl3 --> ai3
+    lvl4 --> ai4
+    
+    %% Human intervention requirements
+    subgraph "Human Intervention"
+        human1["Level 1 Requires:
+        • Domain expertise
+        • Specialized knowledge
+        • Strategic vision"]
+        style human1 fill:#FFDDF4,stroke:#ff69b4,stroke-width:2px,color:#333
+        
+        human2["Level 2 Requires:
+        • Tech stack wisdom
+        • Maintenance planning
+        • Integration experience"]
+        style human2 fill:#E6CCFA,stroke:#9370db,stroke-width:2px,color:#333
+        
+        human3["Level 3 Requires:
+        • Edge case awareness
+        • Performance optimization
+        • Error handling strategy"]
+        style human3 fill:#B3C0FF,stroke:#0000CD,stroke-width:2px,color:#333
+        
+        human4["Level 4 Requires:
+        • Security awareness
+        • Performance standards
+        • Code review discipline"]
+        style human4 fill:#D6EBF9,stroke:#87CEFA,stroke-width:2px,color:#333
+    end
+    
+    %% Connect levels to human intervention
+    lvl1 --- human1
+    lvl2 --- human2
+    lvl3 --- human3
+    lvl4 --- human4
+```

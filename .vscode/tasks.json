@@ -27,24 +27,24 @@
           "panel": "shared"
         },
         "problemMatcher": []
-      },
-      {
-        "label": "Watch for file changes",
+      },      {
+        "label": "Check file changes",
         "type": "shell",
-        "command": "powershell",
+        "command": "npm",
         "args": [
-          "-Command",
-          "While($true) { npm run update-paths; Start-Sleep -Seconds 10 }"
+          "run",
+          "update-paths"
         ],
-        "isBackground": true,
-        "runOptions": {
-          "runOn": "folderOpen"
-        },
+        "group": "build",
         "presentation": {
-          "reveal": "never",
-          "panel": "dedicated"
+          "reveal": "silent",
+          "panel": "shared"
         },
-        "problemMatcher": []
+        "problemMatcher": [],
+        "runOptions": {
+          "runOn": "folderOpen",
+          "reevaluateOnRerun": true
+        }
       }
     ]
   }

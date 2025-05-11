@@ -1,5 +1,14 @@
 {
     // related to paste image extension:
     // https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
-    "pasteImage.path": "${currentFileDir}/assets"
+    "pasteImage.path": "${currentFileDir}/assets",
+
+    // Run the update-paths task whenever a markdown file in blog-posts is saved
+    "triggerTaskOnSave.tasks": {
+        "Check file changes": ["blog-posts/**/*.md"]
+    },
+    "triggerTaskOnSave.showStatusBarToggle": true,
+    "triggerTaskOnSave.on": true,
+    "triggerTaskOnSave.resultIndicator": "statusBarItem",
+    "workbench.colorCustomizations": {}
 }
