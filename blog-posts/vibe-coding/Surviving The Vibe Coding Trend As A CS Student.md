@@ -1,3 +1,13 @@
+---
+published: true
+title: 'Surviving The Vibe Coding Trend As A CS Student'
+cover_image: 'https://raw.githubusercontent.com/odyash/odyash-dev.to/main/blog-posts/vibe-coding/assets/post-cover.png'
+description: 'Surviving The Vibe Coding Trend As A CS Student'
+tags: vibecoding, githubcopilot, ai, productivity
+series: 'Vibe Coding'
+canonical_url:
+---
+
 _**TOC:**_
 
 - ["Why Should I join CS When Code Can Be Easily Vibed 🏄‍♂️ ?"](#why-should-i-join-cs-when-code-can-be-easily-vibed-️-)
@@ -9,7 +19,7 @@ _**TOC:**_
   - [Level 2 (Complex Isolated Problems) Then](#level-2-complex-isolated-problems-then)
   - [Level 1 (Simple Isolated Problems) Finally](#level-1-simple-isolated-problems-finally)
   - [Lessons Learned From This Journey](#lessons-learned-from-this-journey)
-- [Footnotes](#footnotes)
+- [Footnotes and References](#footnotes-and-references)
 - [If you Have Any Questions/Suggestions...](#if-you-have-any-questionssuggestions)
 - [And If I made a mistake](#and-if-i-made-a-mistake)
 
@@ -18,7 +28,7 @@ _**TOC:**_
 
 &nbsp;
 
-This post acts a survival guide for CS students who are currently in the middle of the "Vibe Coding" wave 🌊.
+This post acts a survival guide for CS students who are currently in the middle of the "Vibe Coding" wave 🌊 [1].
 
 Actually, I'll phrase this post in a question-answer format while assuming that you are a pessimistic CS student who is not *vibing* with the current AI trends.
 
@@ -202,9 +212,11 @@ Otherwise, you will be lost in the middle of the vibe waves, and you won't know 
 
 &nbsp;
 
-## Footnotes
+## Footnotes and References
 
 [fn.1]: These levels of complexity are completely subjective, and they are not based on any scientific research. They are just a way for me to mentally categorize a problem when I see it.
+
+[1]: Cover art by [Pete Sena](https://petesena.medium.com/?source=post_page---byline--124b9288e551---------------------------------------): "[Cracking the code of vibe coding](https://uxdesign.cc/cracking-the-code-of-vibe-coding-124b9288e551)" medium article.
 
 &nbsp;
 
