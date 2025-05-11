@@ -13,6 +13,38 @@
         ],
         "isBackground": true,
         "problemMatcher": []
+      },
+      {
+        "label": "Update dev-to-git.json paths",
+        "type": "shell",
+        "command": "npm",
+        "args": [
+          "run",
+          "update-paths"
+        ],
+        "presentation": {
+          "reveal": "silent",
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Watch for file changes",
+        "type": "shell",
+        "command": "powershell",
+        "args": [
+          "-Command",
+          "While($true) { npm run update-paths; Start-Sleep -Seconds 10 }"
+        ],
+        "isBackground": true,
+        "runOptions": {
+          "runOn": "folderOpen"
+        },
+        "presentation": {
+          "reveal": "never",
+          "panel": "dedicated"
+        },
+        "problemMatcher": []
       }
     ]
   }

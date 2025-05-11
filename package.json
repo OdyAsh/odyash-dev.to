@@ -4,8 +4,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/OdyAsh/odyash-dev.to.git"
-  },
-  "scripts": {
+  },  "scripts": {
     "prettier": "prettier",
     "embedme": "embedme blog-posts/**/*.md",
     "prettier:base": "yarn run prettier \"**/*.{js,json,scss,md,ts,html,component.html}\"",
@@ -13,11 +12,15 @@
     "prettier:check": "yarn run prettier:base --list-different",
     "embedme:check": "yarn run embedme --verify",
     "embedme:write": "yarn run embedme",
-    "dev-to-git": "dev-to-git"
+    "dev-to-git": "dev-to-git",
+    "update-paths": "node update-paths.js"
   },
   "dependencies": {
     "dev-to-git": "1.4.10",
     "embedme": "1.22.1",
     "prettier": "2.8.8"
+  },
+  "devDependencies": {
+    "glob": "^11.0.2"
   }
 }
