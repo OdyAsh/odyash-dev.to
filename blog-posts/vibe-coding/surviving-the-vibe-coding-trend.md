@@ -1,8 +1,8 @@
 ---
 published: true
-title: 'Surviving The Vibe Coding Trend As A CS Student'
+title: 'Surviving The Vibe Coding Trend'
 cover_image: 'https://raw.githubusercontent.com/odyash/odyash-dev.to/main/blog-posts/vibe-coding/assets/post-cover.png'
-description: 'Surviving The Vibe Coding Trend As A CS Student'
+description: 'Surviving The Vibe Coding Trend'
 tags: vibecoding, githubcopilot, ai, productivity
 series: 'Vibe Coding'
 canonical_url:
@@ -28,9 +28,9 @@ _**TOC:**_
 
 &nbsp;
 
-This post acts a survival guide for CS students who are currently in the middle of the "Vibe Coding" wave 🌊 [1].
+This post acts a survival guide for devs. (with a focus on CS students) who are currently in the middle of the "Vibe Coding" wave 🌊 [1].
 
-Actually, I'll phrase this post in a question-answer format while assuming that you are a pessimistic CS student who is not *vibing* with the current AI trends.
+Actually, I'll phrase this post in a question-answer format while assuming that you are a pessimistic dev. who is not *vibing* with the current AI trends.
 
 &nbsp;
 

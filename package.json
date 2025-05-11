@@ -1,5 +1,6 @@
 {
   "name": "dev.to",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/OdyAsh/odyash-dev.to.git"

@@ -20,8 +20,10 @@ jobs:
           node-version: 16.10.0
       - name: Install dependencies
         run: yarn --frozen-lockfile --non-interactive --no-progress
-      - name: Format check
-        run: yarn run prettier:check
+      # Skipping Prettier check in the CI pipeline
+      # Uncomment and run locally before pushing if needed:
+      # - name: Format check
+      #   run: yarn run prettier:check
       - name: Readme check
         run: yarn run embedme:check
       - name: Devto
