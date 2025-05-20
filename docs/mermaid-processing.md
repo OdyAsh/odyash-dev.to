@@ -14,7 +14,7 @@ This document explains VS Code tasks and Git hooks (used by this repo) to handle
   - [Usage](#usage)
     - [Via VS Code Tasks](#via-vs-code-tasks)
     - [Via npm/yarn Scripts](#via-npmyarn-scripts)
-    - [Automated Git Hooks](#automated-git-hooks)
+    - [Automated Git Hooks (SKIP)](#automated-git-hooks-skip)
   - [How It Works](#how-it-works)
     - [Mermaid to Images](#mermaid-to-images)
     - [Images to Mermaid](#images-to-mermaid)
@@ -50,7 +50,12 @@ yarn mermaid-to-png path/to/your/file.md
 yarn png-to-mermaid path/to/your/file.md
 ```
 
-### Automated Git Hooks
+### Automated Git Hooks (SKIP)
+
+**UPDATE**: Currently, don't follow the logic in this section, as I need to update the hooks as I understood some concepts wrong.
+* E.g. 1, there's no such thing as a `post-push` hook.
+* E.g. 2, the `git diff-tree --no-commit-id --name-only -r HEAD` command in `pre-push` hook won't return anything, as the context is different from when we run the `pre-push` file manually using `sh` command.
+
 
 The repository includes shell-based Git hooks that automatically handle Mermaid diagrams during the Git workflow:
 
