@@ -71,7 +71,7 @@ Yes, here's a simple categorization of the problems that any developer faces in 
    2. E.g., react/fastapi for frontend/backend, streamlit for both, etc. python as main language, uv for managing dependencies, etc.
    3. Concretely, a `lvl1` problem is basically a series of `lvl3` problems that are connected together.
 
-Illustration (Shown in this order: `lvl1` -> `lvl2` -> `lvl3` -> `lvl4`):
+Illustration (Shown in this order: `lvl1` -> `lvl2` -> `lvl3` -> `lvl4`): 
 
 ```mermaid
 graph TD
