@@ -5,6 +5,8 @@ echo "Starting pre-push hook: Converting Mermaid diagrams to PNG images..."
 
 # Get the list of modified markdown files that are being pushed
 # Use git diff command to identify files that have been modified and staged
+echo "Files being checked:"
+echo "$(git diff --name-only --cached --diff-filter=ACMR)"
 changed_files=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.md$')
 
 if [ -z "$changed_files" ]; then
