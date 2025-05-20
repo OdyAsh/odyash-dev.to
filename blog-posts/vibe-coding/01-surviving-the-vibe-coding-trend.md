@@ -1,7 +1,7 @@
 ---
 published: true
 title: 'Surviving The Vibe Coding Trend'
-cover_image: 'https://raw.githubusercontent.com/odyash/odyash-dev.to/main/blog-posts/vibe-coding/assets/post-cover.png'
+cover_image: 'https://raw.githubusercontent.com/odyash/odyash-dev.to/main/blog-posts/vibe-coding/assets/01-cover-image.png'
 description: 'Surviving The Vibe Coding Trend'
 tags: vibecoding, githubcopilot, ai, productivity
 series: 'Vibe Coding'
@@ -11,13 +11,13 @@ canonical_url:
 _**TOC:**_
 
 - ["Why Should I join CS When Code Can Be Easily Vibed 🏄‍♂️ ?"](#why-should-i-join-cs-when-code-can-be-easily-vibed-️-)
-  - ["Problem Complexity?"](#problem-complexity)
+  - ["Problem Complexity? Huh?"](#problem-complexity-huh)
   - ["Ok, So Does The AI *Vibe* ✨ With All of These Levels?"](#ok-so-does-the-ai-vibe--with-all-of-these-levels)
 - ["What You're Saying is a Little Bit Abstract. Examples, Plz?"](#what-youre-saying-is-a-little-bit-abstract-examples-plz)
-  - [Level 1 (Abstract Connected Problems) First](#level-1-abstract-connected-problems-first)
-  - [Level 2 (Concrete Connected Problems) Next](#level-2-concrete-connected-problems-next)
-  - [Level 3 (Complex Isolated Problems) Then](#level-3-complex-isolated-problems-then)
-  - [Level 4 (Simple Isolated Problems) Finally](#level-4-simple-isolated-problems-finally)
+  - [First - Strategic Thinking (`lvl1`)](#first---strategic-thinking-lvl1)
+  - [Next - Technical Decision Making (`lvl2`)](#next---technical-decision-making-lvl2)
+  - [Then - Tactical Problem Solving (`lvl3`)](#then---tactical-problem-solving-lvl3)
+  - [Finally - Function Implementation (`lvl4`)](#finally---function-implementation-lvl4)
   - [Final Product](#final-product)
   - [Lessons Learned From This Journey](#lessons-learned-from-this-journey)
 - [Footnotes and References](#footnotes-and-references)
@@ -29,7 +29,7 @@ _**TOC:**_
 
 &nbsp;
 
-This post acts a survival guide for devs. (with a focus on CS students) who are currently in the middle of the "Vibe Coding" wave 🌊 [1].
+This post acts a survival guide for devs. (with a focus on CS students) who are currently in the middle of the "Vibe Coding" wave 🌊. [1]
 
 Actually, I'll phrase this post in a question-answer format while assuming that you are a pessimistic dev. who is not *vibing* with the current AI trends.
 
@@ -41,13 +41,15 @@ First of all, what "code" are you talking about?
 
 You "code" to accomplish a "task". I.e., a "problem" that you want to solve.
 
-These "problems" *can* be categorized into multiple levels of complexity...
+These `problems` *can* be categorized into multiple levels of `complexity` ...
 
 &nbsp;
 
-### "Problem Complexity?"
+### "Problem Complexity? Huh?"
 
-Yes, here's a simple categorization of the problems that an average dev. faces ([fn.1]): 
+Yes, here's a simple categorization of the problems that any developer faces in terms of complexity/scope [fn.1]: 
+
+(Explained in this order: `lvl4` -> `lvl3` -> `lvl1` -> `lvl2`)
 
 1. **Simple isolated problems** (`lvl4`): These are the problems that can be *usually* solved using a single **function**. 
    1. For example, reading an audio file from a local file path into RAM. 
@@ -69,18 +71,11 @@ Yes, here's a simple categorization of the problems that an average dev. faces (
    2. E.g., react/fastapi for frontend/backend, streamlit for both, etc. python as main language, uv for managing dependencies, etc.
    3. Concretely, a `lvl1` problem is basically a series of `lvl3` problems that are connected together.
 
-<!-- TODO NOW:  
-   1. Write VSCode task that will auto copy mermaid code snippets from a .md file to a neighbouring mermaid/*.mmd file per each mermaid code snippet in the .md file.
-   2. Then, for each .mmd file, auto-generate a .png file for it in a neighbouring assets/*.png file with the same name as its corresponding .mmd file.
-      1. E.g., if the .mmd file is called `mermaid/ai-vibe-brain-diagram.mmd`, then the generated .png file will be called `assets/ai-vibe-brain-diagram.png`.
-   3. Then, auto-replace the mermaid code snippets in the .md file with the generated .png files.
-   4. Write another VSCode task that does the reverse (i.e., given that the .md file contains .png files, then search for the corresponding .mmd files and replace them if any).
-   5. Note 1: the first task mentioned in step 1. and 2. and 3. should also include a check to see if the .mmd file already exists, and if it does, then it should not create a new one.
-   6. Note 2: Since there's no way to guess the names of the to-be-generated .mmd files, assume that the first line in a mermaid code snippet will be a `%% file-name-here` comment. If not found, then name the .mmd file as `mermaid/mermaid-<sequential-number>.mmd`.
--->
+Illustration (Shown in this order: `lvl1` -> `lvl2` -> `lvl3` -> `lvl4`):
 
 ```mermaid
 graph TD
+    %% file name: problem-complexity-levels-diagram.mmd
     %% Problem complexity levels
     lvl1["Level 1: Abstract Connected Problems
     (High-Level System Design)"]
@@ -112,6 +107,7 @@ Let's visualize how our brains process these different problem levels and when A
 
 ```mermaid
 graph TD
+    %% file name: ai-vibe-brain-diagram.mmd
     %% Main brain structure
     brain((("Human Brain")))
     style brain fill:#f9f9f9,stroke:#555,stroke-width:2px,color:#333
@@ -162,7 +158,7 @@ graph TD
     brain --> lvl2
     brain --> lvl3
     brain --> lvl4
-      %% Connection between levels and AI usage
+    %% Connection between levels and AI usage
     lvl1 --> ai1
     lvl2 --> ai2
     lvl3 --> ai3
@@ -206,6 +202,8 @@ graph TD
 
 Now let's break it down:
 
+(In this order: `lvl4` -> `lvl3` -> `lvl1` -> `lvl2`)
+
 &nbsp;
 
 1. For `lvl4` problems: Yes, AI can [easily vibe](https://www.youtube.com/shorts/6s8qa9Kl5-s) with them. 
@@ -241,9 +239,10 @@ Now let's break it down:
 
 &nbsp;
 
-4. For `lvl2` problems: Similar situation to `lvl1` problems;   1. If you just give it a high level design (i.e., a `lvl1` solution) and tell it to suggest the suitable tech stack and provide detailed implementation without giving it proper requirements/constraints/context, then it may choose libraries that are not suitable for your use case down the road.
+4. For `lvl2` problems: Similar situation to `lvl1` problems;   
+   1. If you just give it a high level design (i.e., a `lvl1` solution) and tell it to suggest the suitable tech stack and provide detailed implementation **without** giving it proper requirements/constraints/context, then it may choose **libraries that are not suitable** for your use case down the road.
       1. For example, in the prayer times app, it may suggest an API library that has a monthly limit of 1000 requests, while your app may need to make 2000 requests per month, etc.
-      2. Well then how should you have tackled this problem?: By having a prior experience on using APIs, so that you can ask questions like "API's rate limit?", "API's server availability?", "API's response time?", etc., and accordingly have an explicit requirement/constraint for the AI to work with.
+      2. Well then how should you have tackled this problem?: By having a *prior experience* on using APIs, so that you can ask questions like "API's rate limit?", "API's server availability?", "API's response time?", etc., and accordingly have an explicit requirement/constraint for the AI to work with.
 
 
 &nbsp;
@@ -254,7 +253,7 @@ Let me map these levels using a real project I recently built: [ayahs-audio-down
 
 &nbsp;
 
-### Level 1 (Abstract Connected Problems) First
+### First - Strategic Thinking (`lvl1`)
 
 My journey started with a high-level problem: "I want to create a tool that lets users select a range of Quranic verses, download their audio files, and combine them into a single file."
 
@@ -266,7 +265,7 @@ I was thinking at the highest abstraction level - what the system should accompl
 
 &nbsp;
 
-### Level 2 (Concrete Connected Problems) Next
+### Next - Technical Decision Making (`lvl2`)
 
 After exploring available APIs, I made architectural decisions:
 
@@ -277,13 +276,14 @@ After exploring available APIs, I made architectural decisions:
 5. Include FFmpeg via `packages.txt` for Streamlit Cloud deployment
 
 I outlined these requirements in detail:
+
 > "3.1 The user chooses the starting ayah (e.g., 2:1) and the ending ayah (e.g., 2:8)
 > 3.2 the user then chooses the reciter of choice...
 > 3.3 the user clicks on get audio file..."
 
 &nbsp;
 
-### Level 3 (Complex Isolated Problems) Then
+### Then - Tactical Problem Solving (`lvl3`)
 
 Next, I broke down the main functionality into discrete problems:
 1. Downloading audio files for a range of verses
@@ -297,7 +297,8 @@ Each of these needed a specific implementation strategy. For example, the audio 
 
 &nbsp;
 
-### Level 4 (Simple Isolated Problems) Finally
+### Finally - Function Implementation (`lvl4`)
+
 
 At the lowest level, I had individual functions like:
 - `parse_ayah_reference()` - Parse an input like "2:5" into surah and ayah numbers
@@ -334,21 +335,26 @@ App's architecture:
          1. "I want to use a library that doesn't require any external dependencies".
          2. Or: "I'm later uploading this to streamlit cloud, so read [the streamlit docs](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies) to see how it handles external dependencies and act accordingly"
          3. Etc.
-   2. **Think of Dependencies That The AI Might Want to Know About**: Examples:
-      1. Stating that the solution will be eventually deployed to streamlit cloud would have helped copilot act accordingly on how to install `ffmpeg`.
-      2. Stating that the solution will use Python 3.13 could have helped copilot choose libraries that are compatible with it.
-         1. For example, it chose `pydub`, which turned out to have issues with Python 3.13, so I had to downgrade to 3.11.
-         2. However, I'm skeptical about this tip. I.e., I'm skeptical that copilot is trained enough to know that certain python libraries have issues with certain python versions. So I wouldn't rely on this tip too much.
-   3. **Ride The Vibe Tech Wave**: There is so many tools/websites out there that can help you with your workflow/docs. Examples:
-      1. GitHub Copilot: [Enough said](https://www.youtube.com/watch?v=dutyOc_cAEU).
-      2. [Deep Wiki](https://deepwiki.com/): A website that indexes your public GitHub repos and provide nice docs for it.
-         1. E.g.: https://deepwiki.com/OdyAsh/ayahs-audio-downloader
-      3. Generate [mermaid diagrams](https://mermaid.js.org/intro/) with AI. 
-         1. Details: [Medium article](https://mike-vincent.medium.com/llm-mermaid-how-modern-teams-create-uml-diagrams-without-lucidchart-e54c56350804).
-         2. Even the diagrams in this article are generated using mermaid `:]`.
-      4. [SpecStory](https://marketplace.visualstudio.com/items?itemName=SpecStory.specstory-vscode) Extension: An IDE extension that tracks/saves your conversation's with the IDE's AI model (e.g., copilot).
-         1. For example, check out the markdown files [here](https://github.com/OdyAsh/odyash-dev.to/tree/main/.specstory/history) to see how I made this article `;]`.
-2. **Just Because You Can Vibe, Doesn't Mean You Should**: 
+2. **Think of Dependencies That The AI Might Want to Know About**: Examples:
+   1. Stating that the solution will be eventually deployed to streamlit cloud would have helped copilot act accordingly on how to install `ffmpeg`.
+   2. Stating that the solution will use Python 3.13 could have helped copilot choose libraries that are compatible with it.
+      1. For example, it chose `pydub`, which turned out to have issues with Python 3.13, so I had to downgrade to 3.11.
+      2. However, I'm skeptical about this tip. I.e., I'm skeptical that copilot is trained enough to know that certain python libraries have issues with certain python versions. So I wouldn't rely on this tip too much.
+3. **Ride The Vibe Tech Wave**: There is so many tools/websites out there that can help you with your workflow/docs. Examples:
+   1. GitHub Copilot: [Enough said](https://www.youtube.com/watch?v=dutyOc_cAEU).
+   2. [Deep Wiki](https://deepwiki.com/): A website that indexes your public GitHub repos and provide nice docs for it.
+      1. E.g.: https://deepwiki.com/OdyAsh/ayahs-audio-downloader
+   3. Generate [mermaid diagrams](https://mermaid.js.org/intro/) with AI. 
+      1. Details: [Medium article](https://mike-vincent.medium.com/llm-mermaid-how-modern-teams-create-uml-diagrams-without-lucidchart-e54c56350804).
+      2. Even the diagrams in this article are generated using mermaid `:]`.
+   4. [SpecStory](https://marketplace.visualstudio.com/items?itemName=SpecStory.specstory-vscode) Extension: An IDE extension that tracks/saves your conversation's with the IDE's AI model (e.g., copilot).
+      1. For example, check out the markdown files [here](https://github.com/OdyAsh/odyash-dev.to/tree/main/.specstory/history) to see how I made this article `;]`.
+   5. Use AI as your "friendly neighbourhood plumber" [2].
+      1. Updated your codebase and now you're dreading the README.md and docs/*.md documentation? Just ask the AI to do it for you.
+      2. Need to manually change file references? Let the AI create a VSCode task that will [automatically do this for you](../../docs/update-dev-to-git-json-upon-save.md) <3. 
+      3. and so on...
+      4. See the pattern here? The 2 problems above are `lvl2`, so [prompt the AI succinctly](../../.specstory/history/2025-05-11-auto-update-json-logic.md), and the AI will return a mostly working solution `:]`.
+4. **Just Because You Can Vibe, Doesn't Mean You Should**: 
    1. I did some problem-solving by myself (e.g., `lvl3`, parts of `lvl4`).
    2. Yet, I still relied on the AI for most of the implementation (e.g., majority of `lvl4`, which is a series of `lvl2`/`lvl1` problems that the AI defined and solved).
    3. However, what helped me is that I already had a mental *big picture* on how a problem like this can be solved and what tech stack is suitable for it.
@@ -362,15 +368,16 @@ Otherwise, you will be lost in the middle of the vibe waves, and you won't know 
 
 ![drowning gif](https://media.tenor.com/f1WXuLRAU3AAAAAM/kaptorga-terminator.gif)
 
-
-
 &nbsp;
 
 ## Footnotes and References
 
 [fn.1]: These levels of complexity are completely subjective, and they are not based on any scientific research. They are just a way for me to mentally categorize a problem when I see it.
 
-[1]: Cover art by [Pete Sena](https://petesena.medium.com/?source=post_page---byline--124b9288e551---------------------------------------): "[Cracking the code of vibe coding](https://uxdesign.cc/cracking-the-code-of-vibe-coding-124b9288e551)" medium article.
+[1]: Cover art by [Pete Sena](https://petesena.medium.com/?source=post_page---byline--124b9288e551---------------------------------------): "[Cracking the code of vibe coding](https://uxdesign.cc/cracking-the-code-of-vibe-coding-124b9288e551)" medium article. Side logos by flaticon.com ([computer science](https://www.flaticon.com/free-icon/computer-science_5044590), [problem solving](https://www.flaticon.com/free-icon/problem-solving_6487594))
+
+[2]: [The Bulk of Software Engineering is Just Plumbing, by Karl Hughes](https://www.karllhughes.com/posts/plumbing)
+
 
 &nbsp;
 
@@ -382,6 +389,12 @@ Your participation is most welcome! 🔥🙌
 
 ## And If I made a mistake
 
-Then kindly correct me `:]` <3
+Then kindly correct me by:
+
+* Writing a comment ✍️
+* Or opening a PR on [GitHub](https://github.com/OdyAsh/odyash-dev.to/tree/main/blog-posts) 
+  * [Details](https://dev.to/maxime1992/manage-your-dev-to-blog-posts-from-a-git-repo-and-use-continuous-deployment-to-auto-publish-update-them-143j#:~:text=%0A%20%20%0A%20%20Found%20a%20typo%3F%0A)
+
+ See ya! `:]` 🙌
 
 ![goodbye gif](https://media1.giphy.com/media/z6JcPVxFbsbNE5WNMx/giphy.gif)

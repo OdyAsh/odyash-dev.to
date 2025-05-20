@@ -14,11 +14,17 @@
     "embedme:check": "yarn run embedme --verify",
     "embedme:write": "yarn run embedme",
     "dev-to-git": "dev-to-git",
-    "update-paths": "node update-paths.js"
+    "update-paths": "node update-paths.js",
+    "mermaid-to-png": "node scripts/mermaid-to-png.js",
+    "png-to-mermaid": "node scripts/png-to-mermaid.js"
   },
   "dependencies": {
     "dev-to-git": "1.4.10",
     "embedme": "1.22.1",
     "prettier": "2.8.8"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.4.2",
+    "puppeteer": "^24.8.2"
   }
 }

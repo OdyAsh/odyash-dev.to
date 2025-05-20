@@ -1,14 +1,52 @@
 {
-    // related to paste image extension:
-    // https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
-    "pasteImage.path": "${currentFileDir}/assets",
+
+    ///////////////////////////////////// Task Settings ///////////////////////////////////////
 
     // Run the update-paths task whenever a markdown file in blog-posts is saved
     "triggerTaskOnSave.tasks": {
-        "Check file changes": ["blog-posts/**/*.md"]
+        "Sync File Paths With dev-to-git.json": ["blog-posts/**/*.md"]
     },
     "triggerTaskOnSave.showStatusBarToggle": true,
     "triggerTaskOnSave.on": true,
     "triggerTaskOnSave.resultIndicator": "statusBarItem",
-    "workbench.colorCustomizations": {}
+    
+    ///////////////////////////////////// Markdown Settings ///////////////////////////////////////
+
+    // related to paste image extension:
+    // https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
+    // Summary: If you have the above extension installed, then you can:
+    //      * highlight a text in a .md file(e.g., hello there)
+    //      * then paste via the extension's shortcut (Ctrl+Alt+V)
+    //      * and it will replace "hello there" with `![](assets/hello%20there.png)`
+    "pasteImage.path": "${currentFileDir}/assets",
+    
+    // Read more about VSCode's "markdown-language-features" built-in extension here:
+    //      https://code.visualstudio.com/docs/languages/markdown
+    //      https://github.com/microsoft/vscode/tree/main/extensions/markdown-language-features
+    //      https://dev.to/francecil/vscode-new-version-179-supports-pasting-images-in-markdown-1fd2
+    "markdown.updateLinksOnFileMove.enabled": "always",
+    // NOTE: Below setting will make VSCode's native paste image feature work similar to the "Paste Image" extension
+    //      with the exception of the following scenario:
+    //      * If you highlight the "hello there" text and paste it (via Ctrl+V), 
+    //        it will overwrite that text to `![alt text](assets/image.png)`
+    "markdown.copyFiles.destination": {
+        "**/*.md": "./assets/${fileName}"
+    },
+    "markdown.validate.enabled": true,
+    "markdown.validate.fileLinks.enabled": "warning",
+    // NOTE: In my .md blogs, I sometimes write footnotes/notes like this:
+    // """
+    // The following are the best resources for data structures: [fn.1]
+    // ... blog content ...
+    // [fn.1]: In my opinion of course
+    // """
+    // If I don't add the setting below, then VSCode will complain about the footnote link not being valid
+    // Side note: Source for the logic of `"*\" \"*"`:
+    //      https://unix.stackexchange.com/a/755858
+    "markdown.validate.ignoredLinks": [
+    "*\" \"*"
+    ],
+    "workbench.colorCustomizations": {},
+
+    ///////////////////////////////////// Other Settings ///////////////////////////////////////
 }

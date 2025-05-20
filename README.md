@@ -41,6 +41,14 @@ This repository includes an automatic path synchronization system that keeps you
 
 For detailed information on how this works and how to set it up, see the [automatic path synchronization documentation](docs/update-dev-to-git-json-upon-save.md).
 
+### Mermaid Diagram Processing
+
+This repository includes tools for handling Mermaid diagrams:
+- Automatically converts Mermaid code blocks to PNG images before pushing to dev.to
+- Restores the Mermaid code blocks locally for continued editing
+- Includes VS Code tasks and Git hooks to automate the process
+
+For detailed information and to set it up, see the [Mermaid diagram processing documentation](docs/mermaid-processing.md).
 
 ## How can I find the ID of my blog post on dev.to?
 
@@ -113,15 +121,3 @@ rm yarn.lock  # or del yarn.lock on Windows
 # Install dependencies (this will create a new yarn.lock with latest versions)
 yarn install
 ```
-
-## README template
-
-The following is simply a template that you may want to use for your own version of that repository.
-
-# \<YOUR NAME\>'s blog source
-
-https://dev.to/\<YOUR DEV.TO NICKNAME\>
-
-## Blog posts
-
-- [\<BLOG POST NAME\>](https://dev.to/\<BLOG POST LINK\>)

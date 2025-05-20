@@ -5,7 +5,6 @@ This document explains the automatic path synchronization system implemented in 
 ***TOC:***
 
 ---
-
 - [Automatic Path Synchronization for dev.to Blog Posts](#automatic-path-synchronization-for-devto-blog-posts)
   - [Quick Start Guide](#quick-start-guide)
     - [What It Does](#what-it-does)
@@ -23,7 +22,6 @@ This document explains the automatic path synchronization system implemented in 
       - [2. Trigger Task on Save Configuration (settings.json)](#2-trigger-task-on-save-configuration-settingsjson)
       - [3. NPM Script (package.json)](#3-npm-script-packagejson)
     - [Troubleshooting](#troubleshooting)
-
 ---
 
 
@@ -38,7 +36,7 @@ When you save a markdown file in the `blog-posts` directory, the system automati
 The path synchronization happens:
 1. **Automatically** when you save any markdown file in the `blog-posts` directory
 2. **Automatically** when you open the workspace (VS Code)
-3. **Manually** when you run the task "Update dev-to-git.json paths" from VS Code's Command Palette
+3. **Manually** when you run the task "Sync File Paths With dev-to-git.json" from VS Code's Command Palette
 
 ### Requirements
 
@@ -81,11 +79,11 @@ To solve this problem, we implemented an automatic path synchronization system t
 The system uses a combination of:
 
 1. **VS Code Tasks** defined in `.vscode/tasks.json`:
-   - "Update dev-to-git.json paths" task runs the script manually
-   - "Check file changes" task runs on workspace open
+   - "Sync File Paths With dev-to-git.json" task runs the script manually
+   - "Sync File Paths With dev-to-git.json" task runs on workspace open
 
 2. **Trigger Task on Save** using the "Trigger Task on Save" extension configured in `.vscode/settings.json`:
-   - Runs the "Check file changes" task when a markdown file in `blog-posts` is saved
+   - Runs the "Sync File Paths With dev-to-git.json" task when a markdown file in `blog-posts` is saved
 
 3. **Path Synchronization Logic** in `update-paths.js`:
    - Scans all markdown files in the blog-posts directory
@@ -109,7 +107,7 @@ The system implements a Levenshtein distance-based algorithm to compare file pat
 
 ```json
 {
-  "label": "Update dev-to-git.json paths",
+  "label": "Sync File Paths With dev-to-git.json",
   "type": "shell",
   "command": "npm",
   "args": ["run", "update-paths"],
@@ -125,7 +123,7 @@ The system implements a Levenshtein distance-based algorithm to compare file pat
 
 ```json
 "triggerTaskOnSave.tasks": {
-  "Check file changes": ["blog-posts/**/*.md"]
+  "Sync File Paths With dev-to-git.json": ["blog-posts/**/*.md"]
 },
 "triggerTaskOnSave.showStatusBarToggle": true,
 "triggerTaskOnSave.on": true,
@@ -154,7 +152,7 @@ If path synchronization is not working:
 
 3. **Run the task manually**
    - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
-   - Type "Run Task" and select "Update dev-to-git.json paths"
+   - Type "Run Task" and select "Sync File Paths With dev-to-git.json"
 
 4. **Check the console output**
    - The script logs its actions, which can help identify any issues

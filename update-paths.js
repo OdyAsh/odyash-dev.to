@@ -7,7 +7,7 @@
  * What It Does:
  * ------------
  * 1. SCAN: Finds all markdown files in the blog-posts directory
- *    Example: "blog-posts/vibe-coding/surviving-the-vibe-coding-trend.md"
+ *    Example: "blog-posts/vibe-coding/01-surviving-the-vibe-coding-trend.md"
  * 
  * 2. CHECK: For each entry in dev-to-git.json, checks if the file still exists at that path
  *    If it exists: Ensures the path format is correct (e.g., adds "blog-posts/" prefix if missing)
@@ -25,7 +25,7 @@
  * This script runs automatically when you save a markdown file in the blog-posts directory.
  * You can also run it manually using:
  *   - npm run update-paths
- *   - VS Code task: "Update dev-to-git.json paths" (defined in .vscode/tasks.json)
+ *   - VS Code task: "Sync File Paths With dev-to-git.json" (defined in .vscode/tasks.json)
  */
 
 const fs = require('fs');

@@ -4,7 +4,7 @@
 
 _**User**_
 
-See this file?: #file:surviving-the-vibe-coding-trend.md  ? I want you you to add content below this header: `## "What You're Saying is a Little Bit Abstract. Examples, Plz?"` which contains the following logic:
+See this file?: #file:01-surviving-the-vibe-coding-trend.md  ? I want you you to add content below this header: `## "What You're Saying is a Little Bit Abstract. Examples, Plz?"` which contains the following logic:
 
 I want to map what I wrote in the header before it (i.e., my explanations of `lvl1`, `lvl2`, `lvl3`, `lvl4` problems) into a real-life example.
 
@@ -50,7 +50,7 @@ _**User**_
 
 another task:
 
-See this ?: #file:surviving-the-vibe-coding-trend.md:47-70  .  I want to create below it mermaid code that best illustrates the connection between these 4 levels of problem complexity (i don't know how you should draw them, get creative by drawing a relatively simple drawing that effectively conveys their relationships with each other).
+See this ?: #file:01-surviving-the-vibe-coding-trend.md:47-70  .  I want to create below it mermaid code that best illustrates the connection between these 4 levels of problem complexity (i don't know how you should draw them, get creative by drawing a relatively simple drawing that effectively conveys their relationships with each other).
 
 Moreover, color code them (borders, not text) to the following;
 
@@ -94,7 +94,7 @@ When this renders in your blog post, it should provide readers with a clear visu
 
 _**User**_
 
-great, but 2 updates #file:surviving-the-vibe-coding-trend.md:71-123  :
+great, but 2 updates #file:01-surviving-the-vibe-coding-trend.md:71-123  :
 
 update 1: instead of coloring borders around whole components, i want you to color each individual component based on the color (e.g., each of the `Function x` blocks have the same border color, etc.)
 
@@ -174,7 +174,7 @@ _**User**_
 
 great, another more general task:
 
-throughout all of the #file:surviving-the-vibe-coding-trend.md  file , i want you to re-map the 4 levels mentioned to be the following:
+throughout all of the #file:01-surviving-the-vibe-coding-trend.md  file , i want you to re-map the 4 levels mentioned to be the following:
 
 lvl3 -> lvl1
 lvl4 -> lvl2
@@ -222,13 +222,13 @@ Now I'll make the changes to remap the level numbers according to your instructi
 
 _**User**_
 
-continue working on the #file:surviving-the-vibe-coding-trend.md  file
+continue working on the #file:01-surviving-the-vibe-coding-trend.md  file
 
 ---
 
 _**Assistant**_
 
-I'll continue working on the `surviving-the-vibe-coding-trend.md` file. Looking at your requirements from the previous instructions, I need to re-map the level numbers throughout the file according to the following mapping:
+I'll continue working on the `01-surviving-the-vibe-coding-trend.md` file. Looking at your requirements from the previous instructions, I need to re-map the level numbers throughout the file according to the following mapping:
 
 - lvl3 → lvl1 (Abstract Connected Problems)
 - lvl4 → lvl2 (Concrete Connected Problems)
@@ -245,7 +245,7 @@ Let me update the Mermaid diagram and all references to these levels in the file
 ```
 
 
-Let me try to read the file first to make sure I'm working with the correct content: I'll continue working on the `surviving-the-vibe-coding-trend.md` file. Let me review what needs to be done based on the file content and your conversation history.
+Let me try to read the file first to make sure I'm working with the correct content: I'll continue working on the `01-surviving-the-vibe-coding-trend.md` file. Let me review what needs to be done based on the file content and your conversation history.
 
 I notice that there's a mismatch between the level numbering in the TOC and the corresponding content. Additionally, the Mermaid diagram needs to be fixed to properly represent the relationship between the problem complexity levels. Here's what I'll do:
 

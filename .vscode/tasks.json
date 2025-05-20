@@ -1,50 +1,60 @@
   {
     "version": "2.0.0",
-    "tasks": [
+    "tasks": [     
       {
-        "label": "Resume Latest Edit Session",
-        "type": "shell",
-        "command": "code",
-        "args": [
-          "--wait",
-          "--goto",
-          // doesn't work, gives the error "could not resume changes from the cloud for id {0}"
-          "${command:workbench.editSessions.actions.resumeLatest}"
-        ],
-        "isBackground": true,
-        "problemMatcher": []
-      },
-      {
-        "label": "Update dev-to-git.json paths",
+        "label": "Sync File Paths With dev-to-git.json",
         "type": "shell",
         "command": "npm",
         "args": [
           "run",
           "update-paths"
         ],
-        "presentation": {
-          "reveal": "silent",
-          "panel": "shared"
-        },
-        "problemMatcher": []
-      },      {
-        "label": "Check file changes",
-        "type": "shell",
-        "command": "npm",
-        "args": [
-          "run",
-          "update-paths"
-        ],
+        // NOTE 1: You can hover on each key to let VSCode tell you what it does
+        // NOTE 2: If you want to see info about the values (not the keys), then do this:
+        //    Highlight the value string (e.g., "build"), make it empty (""), and then press Ctrl+Space while the cursor is between the ("") quotes
         "group": "build",
         "presentation": {
           "reveal": "silent",
           "panel": "shared"
         },
+        // Defines problem matchers to parse task output for errors (empty array means don't track errors)
         "problemMatcher": [],
+        // Controls when and how the task runs automatically. Details:
+        //    https://code.visualstudio.com/docs/debugtest/tasks#_run-behavior
         "runOptions": {
           "runOn": "folderOpen",
           "reevaluateOnRerun": true
-        }
+          }
+      },      
+      {
+        "label": "Mermaid in md File -> PNG",
+        "type": "shell",
+        "command": "node",
+        "args": [
+          "scripts/mermaid-to-png.js",
+          "${file}"
+        ],
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "PNG -> Mermaid in md File",
+        "type": "shell",
+        "command": "node",
+        "args": [
+          "scripts/png-to-mermaid.js",
+          "${file}"
+        ],
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        },
+        "problemMatcher": []
       }
     ]
   }

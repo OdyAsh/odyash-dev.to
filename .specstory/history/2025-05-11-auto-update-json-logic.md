@@ -271,7 +271,7 @@ This is your original task that attempts to resume a previous edit session in VS
 ### 2. "Update `dev-to-git.json` paths"
 ```json
 {
-  "label": "Update dev-to-git.json paths",
+  "label": "Sync File Paths With dev-to-git.json",
   "type": "shell",
   "command": "npm",
   "args": [
@@ -736,7 +736,7 @@ This approach is more maintainable and better handles your use case of keeping `
 
 _**User**_
 
-in #file:update-paths.js:22-23  , state that you can run it via the respective Update dev-to-git.json paths task as well in #file:tasks.json 
+in #file:update-paths.js:22-23  , state that you can run it via the respective Sync File Paths With dev-to-git.json task as well in #file:tasks.json 
 
 ---
 
