@@ -124,7 +124,7 @@ git --version
 
 Side note 1: I added the `--replace-all` flag because of the following observation:
 * I wanted to see the inner logs of `core.hooksPath` command above to make sure it worked.
-* So I ran ` $env:GIT_TRACE = 1` in PowerShell (`export GIT_TRACE=1` in bash) [to enable tracing in git](https://stackoverflow.com/a/55599672/13626137).
+* So I ran `$env:GIT_TRACE = 1` in PowerShell (`export GIT_TRACE=1` in bash) [to enable tracing in git](https://stackoverflow.com/a/55599672/13626137).
 * Then I ran `git config core.hooksPath .githooks` what I found is this:
   * `warning: core.hookspath has multiple values`
   * `error: cannot overwrite multiple values with a single value`
