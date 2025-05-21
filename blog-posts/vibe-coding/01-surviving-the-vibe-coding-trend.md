@@ -73,7 +73,7 @@ Yes, here's a simple categorization of the problems that any developer faces in 
 
 Illustration (Shown in this order: `lvl1` -> `lvl2` -> `lvl3` -> `lvl4`):
 
-![problem-complexity-levels-diagram](assets/problem-complexity-levels-diagram.png)
+![problem-complexity-levels-diagram](./assets/problem-complexity-levels-diagram.png)
 
 &nbsp;
 
@@ -81,7 +81,7 @@ Illustration (Shown in this order: `lvl1` -> `lvl2` -> `lvl3` -> `lvl4`):
 
 Let's visualize how our brains process these different problem levels and when AI assistance is most effective:
 
-![ai-vibe-brain-diagram](assets/ai-vibe-brain-diagram.png)
+![ai-vibe-brain-diagram](./assets/ai-vibe-brain-diagram.png)
 
 &nbsp;
 
