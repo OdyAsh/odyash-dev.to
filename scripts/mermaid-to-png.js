@@ -142,7 +142,7 @@ async function processMermaidDiagrams(mdFilePath) {
       
       const mmdFilePath = path.join(mermaidDir, `${fileName}.mmd`);
       const pngFilePath = path.join(assetsDir, `${fileName}.png`);
-      const relativePngPath = path.relative(mdDir, pngFilePath).replace(/\\/g, '/');
+      const relativePngPath = './' + path.relative(mdDir, pngFilePath).replace(/\\/g, '/');
       
       // Always save/overwrite mermaid code to .mmd file
       fs.writeFileSync(mmdFilePath, mermaidCode);
