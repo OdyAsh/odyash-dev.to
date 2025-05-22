@@ -6,15 +6,15 @@
  * 
  * What It Does:
  * ------------
- * 1. SCAN: Finds all markdown files in the blog-posts directory
- *    Example: "blog-posts/vibe-coding/01-surviving-the-vibe-coding-trend.md"
+ * 1. SCAN: Finds all markdown files in the the-blog-posts directory
+ *    Example: "the-blog-posts/vibe-coding/01-surviving-the-vibe-coding-trend.md"
  * 
  * 2. CHECK: For each entry in dev-to-git.json, checks if the file still exists at that path
- *    If it exists: Ensures the path format is correct (e.g., adds "blog-posts/" prefix if missing)
+ *    If it exists: Ensures the path format is correct (e.g., adds "the-blog-posts/" prefix if missing)
  *    If it doesn't exist: Proceeds to step 3
  * 
  * 3. MATCH: Uses fuzzy matching to find files that might be the same but were moved/renamed
- *    Example: If you moved a file from "blog-posts/coding/file.md" to "blog-posts/vibe-coding/file.md",
+ *    Example: If you moved a file from "the-blog-posts/coding/file.md" to "the-blog-posts/vibe-coding/file.md",
  *             the script will find it based on path similarity (if >50% similar)
  *  * 4. UPDATE: Updates dev-to-git.json with the new paths
  *    If a good match was found: Updates the path automatically
@@ -22,7 +22,7 @@
  * 
  * Usage:
  * -----
- * This script runs automatically when you save a markdown file in the blog-posts directory.
+ * This script runs automatically when you save a markdown file in the the-blog-posts directory.
  * You can also run it manually using:
  *   - npm run update-paths
  *   - VS Code task: "Sync File Paths With dev-to-git.json" (defined in .vscode/tasks.json)
@@ -116,12 +116,12 @@ const fuzzy = {
   }
 };
 
-console.log('Running update-paths.js to sync dev-to-git.json with blog-posts directory...');
+console.log('Running update-paths.js to sync dev-to-git.json with the-blog-posts directory...');
 
-// Check if the blog-posts directory exists
-const blogPostsPath = path.join(__dirname, 'blog-posts');
+// Check if the the-blog-posts directory exists
+const blogPostsPath = path.join(__dirname, 'the-blog-posts');
 if (!fs.existsSync(blogPostsPath)) {
-  console.error('Error: blog-posts directory not found!');
+  console.error('Error: the-blog-posts directory not found!');
   process.exit(1);
 }
 
@@ -136,12 +136,12 @@ try {
   process.exit(1);
 }
 
-// Find all markdown files in the blog-posts directory
+// Find all markdown files in the the-blog-posts directory
 let markdownFiles;
 try {
   // Using custom findFiles function instead of glob
   markdownFiles = findFiles(blogPostsPath, /\.md$/);
-  console.log(`Found ${markdownFiles.length} markdown files in blog-posts directory`);
+  console.log(`Found ${markdownFiles.length} markdown files in the-blog-posts directory`);
 } catch (err) {
   console.error('Error finding markdown files:', err.message);
   process.exit(1);
@@ -161,13 +161,13 @@ devToGitData.forEach(entry => {
   // Normalize the path (replace backslashes with forward slashes)
   const normalizedPath = entry.relativePathToArticle.replace(/\\/g, '/');
   
-  // Make sure the path starts with blog-posts/
-  const relativePath = normalizedPath.startsWith('blog-posts/') 
+  // Make sure the path starts with the-blog-posts/
+  const relativePath = normalizedPath.startsWith('the-blog-posts/') 
     ? normalizedPath 
-    : `blog-posts/${normalizedPath}`;
+    : `the-blog-posts/${normalizedPath}`;
   
-  // Get the path relative to blog-posts directory
-  const expectedRelativePath = relativePath.replace('blog-posts/', '');
+  // Get the path relative to the-blog-posts directory
+  const expectedRelativePath = relativePath.replace('the-blog-posts/', '');
   // First check if the file exists at the exact path
   // Our findFiles function already returns paths with forward slashes
   if (markdownFiles.includes(expectedRelativePath)) {
@@ -181,7 +181,7 @@ devToGitData.forEach(entry => {
   } else {
     // File doesn't exist at the specified path - use fuzzy matching to find the best match
     console.log(`Warning: File not found at path ${relativePath} (ID: ${entry.id})`);    // Create full paths for all markdown files for better matching
-    const fullMarkdownPaths = markdownFiles.map(file => `blog-posts/${file}`);
+    const fullMarkdownPaths = markdownFiles.map(file => `the-blog-posts/${file}`);
 
     // Use fuzzy matching to find the best match
     const { bestMatch, similarity_score } = fuzzy.findBestMatch(relativePath, fullMarkdownPaths);

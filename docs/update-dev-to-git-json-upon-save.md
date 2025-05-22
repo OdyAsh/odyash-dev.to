@@ -5,7 +5,7 @@ This document explains the automatic path synchronization system implemented in 
 ***TOC:***
 
 ---
-- [Automatic Path Synchronization for dev.to Blog Posts](#automatic-path-synchronization-for-devto-blog-posts)
+- [Automatic Path Synchronization for dev.to Blog Posts](#automatic-path-synchronization-for-devto-the-blog-posts)
   - [Quick Start Guide](#quick-start-guide)
     - [What It Does](#what-it-does)
     - [When It Runs](#when-it-runs)
@@ -29,12 +29,12 @@ This document explains the automatic path synchronization system implemented in 
 
 ### What It Does
 
-When you save a markdown file in the `blog-posts` directory, the system automatically updates the corresponding entry in `dev-to-git.json` to point to the new location.
+When you save a markdown file in the `the-blog-posts` directory, the system automatically updates the corresponding entry in `dev-to-git.json` to point to the new location.
 
 ### When It Runs
 
 The path synchronization happens:
-1. **Automatically** when you save any markdown file in the `blog-posts` directory
+1. **Automatically** when you save any markdown file in the `the-blog-posts` directory
 2. **Automatically** when you open the workspace (VS Code)
 3. **Manually** when you run the task "Sync File Paths With dev-to-git.json" from VS Code's Command Palette
 
@@ -83,10 +83,10 @@ The system uses a combination of:
    - "Sync File Paths With dev-to-git.json" task runs on workspace open
 
 2. **Trigger Task on Save** using the "Trigger Task on Save" extension configured in `.vscode/settings.json`:
-   - Runs the "Sync File Paths With dev-to-git.json" task when a markdown file in `blog-posts` is saved
+   - Runs the "Sync File Paths With dev-to-git.json" task when a markdown file in `the-blog-posts` is saved
 
 3. **Path Synchronization Logic** in `update-paths.js`:
-   - Scans all markdown files in the blog-posts directory
+   - Scans all markdown files in the the-blog-posts directory
    - For each entry in dev-to-git.json, checks if the file still exists at the specified path
    - If not, uses fuzzy string matching to find the most similar path
    - Updates dev-to-git.json with the new paths if similarity is greater than 50%
@@ -123,7 +123,7 @@ The system implements a Levenshtein distance-based algorithm to compare file pat
 
 ```json
 "triggerTaskOnSave.tasks": {
-  "Sync File Paths With dev-to-git.json": ["blog-posts/**/*.md"]
+  "Sync File Paths With dev-to-git.json": ["the-blog-posts/**/*.md"]
 },
 "triggerTaskOnSave.showStatusBarToggle": true,
 "triggerTaskOnSave.on": true,

@@ -28,7 +28,7 @@ There's a `dev-to-git.json` file where you can define an array of blog posts, e.
 [
   {
     "id": 12345,
-    "relativePathToArticle": "./blog-posts/name-of-your-blog-post/name-of-your-blog-post.md"
+    "relativePathToArticle": "./the-blog-posts/name-of-your-blog-post/name-of-your-blog-post.md"
   }
 ]
 ```
@@ -37,7 +37,7 @@ There's a `dev-to-git.json` file where you can define an array of blog posts, e.
 
 ### Automatic Path Synchronization
 
-This repository includes an automatic path synchronization system that keeps your `dev-to-git.json` file in sync with your actual markdown files. When you save a markdown file in the `blog-posts` directory, the system will automatically update the corresponding entries in `dev-to-git.json`.
+This repository includes an automatic path synchronization system that keeps your `dev-to-git.json` file in sync with your actual markdown files. When you save a markdown file in the `the-blog-posts` directory, the system will automatically update the corresponding entries in `dev-to-git.json`.
 
 For detailed information on how this works and how to set it up, see the [automatic path synchronization documentation](docs/update-dev-to-git-json-upon-save.md).
 
@@ -57,7 +57,7 @@ This repository is made to **edit** a blog post. Whether it's published or just 
 
 ## How do I configure every blog post individually?
 
-A blog post has to have a [**front matter**](https://dev.to/p/editor_guide) header. You can find an example in this repository here: https://github.com/maxime1992/dev.to/blob/master/blog-posts/name-of-your-blog-post/name-of-your-blog-post.md
+A blog post has to have a [**front matter**](https://dev.to/p/editor_guide) header. You can find an example in this repository here: https://github.com/maxime1992/dev.to/blob/master/the-blog-posts/name-of-your-blog-post/name-of-your-blog-post.md
 
 Simple and from there you have control over the following properties: `title`, `published`, `cover_image`, `description`, `tags`, `series` and `canonical_url`.
 
@@ -69,7 +69,7 @@ If you've got some plugin to preview your markdown from your IDE, the images wil
 
 ## How to setup CI for auto deploying the blog posts?
 
-If you want to use Github and Github Actions, a `.github/workflows/main.yml` file has been already prepared for you.
+If you want to use Github and Github Actions, a `.github/workflows/master.yml` file has been already prepared for you.
 
 - Copy this template to your own Github account by clicking "Use this template"
 - Open up this URL with your own username and repo name of the one you just created using the template: `https://github.com/your-username/your-repo-name/settings/secrets/actions`

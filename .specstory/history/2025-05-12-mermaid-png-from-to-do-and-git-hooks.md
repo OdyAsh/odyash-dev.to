@@ -359,7 +359,7 @@ _**User**_
 
 yes, few updates:
 
-I see that the assets/ folder was created in the root directory , however , i want the assets/ folder to be used is the one next to the .md file that i currently have open. For example, if I currently have #file:01-surviving-the-vibe-coding-trend.md  file open in VSCode IDE , then when I run the task using the command pallete , i want the mermaid images to be generated to assets/ folder that is next to the .md file (i.e., located here: `blog-posts\vibe-coding\assets` )
+I see that the assets/ folder was created in the root directory , however , i want the assets/ folder to be used is the one next to the .md file that i currently have open. For example, if I currently have #file:01-surviving-the-vibe-coding-trend.md  file open in VSCode IDE , then when I run the task using the command pallete , i want the mermaid images to be generated to assets/ folder that is next to the .md file (i.e., located here: `the-blog-posts\vibe-coding\assets` )
 
 Moreover, update your implementation so that instead of looking for `.md` files in `mermaid/` directories , we look for `.mmd` files , as that's the official mermaid extension
 

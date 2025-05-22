@@ -1,8 +1,8 @@
 /**
- * MERMAID TO PNG CONVERTER
+ * MERMAID TO PNG CONVERTER (using mermaid-cli)
  * 
  * This script processes Markdown files containing Mermaid diagram code blocks,
- * converts them to PNG images, and updates the markdown with image references.
+ * converts them to PNG images using mmdc, and updates the markdown with image references.
  * 
  * Logical Flow:
  * 1. Read the markdown file content
@@ -10,47 +10,38 @@
  * 3. Extract all Mermaid code blocks from the markdown
  * 4. For each Mermaid diagram:
  *    - Save the Mermaid code to a .mmd file in the 'mermaid/' directory
- *    - Render the diagram using Puppeteer's headless browser
+ *    - Render the diagram using mermaid-cli
  *    - Save the rendered diagram as a PNG in the 'assets/' directory
  * 5. Replace all Mermaid code blocks in the markdown with image references
  * 6. Save the updated markdown file
  * 
  * Special Behaviors: 
- * - File Naming: The script checks the first 5 lines of each mermaid code block
- *   for a pattern "%% file name: xxxx" (even if indented). If found, the text after
- *   the prefix is used as the filename (with any '.mmd' or '.mermaid' extension removed and the
- *   name sanitized for file system compatibility). For example, if a line contains
- *   "    %% file name: ai vibe brain diagram.mmd", the filename will be "ai vibe brain diagram".
- *   Spaces within filenames are preserved, while invalid characters are replaced with hyphens.
- *   If no such pattern is found, sequential names like 'mermaid-1', 'mermaid-2', etc. are used.
- *   The script also handles special cases like removing consecutive hyphens and trimming
- *   leading/trailing whitespace and hyphens from the generated filenames.
+ * - Command Arguments: The script checks the first 5 lines of each mermaid code block
+ *   for command-line style arguments (e.g., `%% -o my-diagram` or `%% -w 800`).
+ *   These are passed directly to the mmdc command.
+ * - Special handling for -o flag: If -o is specified without slashes (e.g., `%% -o myfile`),
+ *   it's used as the base filename for both the .mmd file and the resulting image.
+ * - Other mmdc flags: You can use any mmdc flag in comments, like `%% -b transparent` 
+ *   for transparent background or `%% -w 800` for width.
+ *   More details on other available `mmdc` args: https://deepwiki.com/search/tell-me-all-the-args-that-i-ca_89d7646f-4aae-4549-9100-3597fdffad44
  * - Directory Structure: All assets and mermaid files are created in dedicated folders
- *   next to the markdown file, not in the root directory. This keeps diagram assets
- *   organized with their source content.
- * - Existing Files: If a .mmd file already exists, its content is overwritten with
- *   the current mermaid code. PNG files are always regenerated to ensure they reflect
- *   the current mermaid code.
- * - Image References: The script updates markdown to use relative path references
- *   to the generated PNG files, making it compatible with both local viewing and
- *   publishing platforms.
+ *   next to the markdown file, not in the root directory. 
  * 
  * Usage: node mermaid-to-png.js <markdown-file-path>
+ * 
+ * Prerequisites: Install mermaid-cli locally in your project using the "packages.json" file:
+ * `yarn install`
  */
 const fs = require('fs');
 const path = require('path');
-const puppeteer = require('puppeteer');
+const { execSync } = require('child_process');
 
 /**
- * Extract and process Mermaid diagrams from a Markdown file using Puppeteer
- * @param {string} mdFilePath - Path to the Markdown file
- * @returns {Promise<number>} - Number of diagrams processed
+ * Setup and create necessary directories
+ * @param {string} mdFilePath - Path to the markdown file
+ * @returns {Object} - Object containing directory paths
  */
-async function processMermaidDiagrams(mdFilePath) {
-  // Read the markdown file
-  const mdContent = fs.readFileSync(mdFilePath, 'utf8');
-  
-  // Directory setup
+function setupDirectories(mdFilePath) {
   const mdDir = path.dirname(mdFilePath);
   const mermaidDir = path.join(mdDir, 'mermaid');
   const assetsDir = path.join(mdDir, 'assets');
@@ -70,15 +61,20 @@ async function processMermaidDiagrams(mdFilePath) {
     console.log(`Created directory: ${assetsDir}`);
   }
   
-  // Find all mermaid code blocks
+  return { mdDir, mermaidDir, assetsDir };
+}
+
+/**
+ * Find all mermaid code blocks in markdown content
+ * @param {string} mdContent - Markdown content
+ * @returns {Array} - Array of matches containing fullMatch and code
+ */
+function findMermaidBlocks(mdContent) {
+  console.log(`Searching for mermaid code blocks...`);
+  
   const mermaidRegex = /```\s*mermaid\s*\r?\n([\s\S]*?)\r?\n\s*```/g;
   let match;
-  let counter = 1;
-  let fileChanges = [];
-  let modifiedMdContent = mdContent;
   
-  console.log(`Searching for mermaid code blocks...`);
-
   // Store all matches in an array first
   const matches = [];
   while ((match = mermaidRegex.exec(mdContent)) !== null) {
@@ -90,108 +86,209 @@ async function processMermaidDiagrams(mdFilePath) {
 
   if (matches.length === 0) {
     console.log('No mermaid diagrams found');
-    return 0;
+  } else {
+    console.log(`Found ${matches.length} mermaid diagrams`);
   }
-
-  console.log(`Found ${matches.length} mermaid diagrams`);
   
-  try {
-    // Launch browser once for all diagrams
-    const browser = await puppeteer.launch({ 
-      headless: 'new'
-    });
+  return matches;
+}
 
-    for (const match of matches) {
-      const mermaidCode = match.code;
-      const fullMatch = match.fullMatch;
-        // Check for filename in first 5 lines (looking for "%% file name: " pattern)
-      const lines = mermaidCode.split('\n').slice(0, 5);
-      let fileName;
-      let fileNameFound = false;
-        // Look for filename pattern in first 5 lines
-      for (const line of lines) {
-        const trimmedLine = line.trim();
-        if (trimmedLine.toLowerCase().startsWith('%% file name:')) {
-          // Extract filename, remove .mmd or .mermaid extension if present
-          let extractedName = trimmedLine.substring(12).trim();
-          if (extractedName.toLowerCase().endsWith('.mmd')) {
-            extractedName = extractedName.substring(0, extractedName.length - 4);
-          } else if (extractedName.toLowerCase().endsWith('.mermaid')) {
-            extractedName = extractedName.substring(0, extractedName.length - 9);
-          }
-            // Remove special characters that aren't valid in filenames, but preserve whitespace in the middle
-          // First, replace any special chars (except spaces) with hyphens
-          fileName = extractedName.replace(/[^a-zA-Z0-9-_ ]/g, '-');
-          
-          // Replace consecutive hyphens with a single hyphen
-          fileName = fileName.replace(/--+/g, '-');
-          
-          // Remove any leading or trailing hyphens and spaces
-          fileName = fileName.replace(/^[-\s]+|[-\s]+$/g, '');
-          
-          fileNameFound = true;
-          break;
+/**
+ * Extract command arguments from mermaid code comments
+ * @param {string} mermaidCode - Mermaid diagram code
+ * @param {number} counter - Counter for default naming
+ * @returns {Object} - Object containing fileName and mmdc arguments
+ */
+function extractCommandArgs(mermaidCode, counter) {
+  const lines = mermaidCode.split('\n').slice(0, 5);
+  let fileName = `mermaid-${counter}`;
+  let customArgs = {};
+  
+  // Look for a comment line with command arguments
+  for (const line of lines) {
+    const trimmedLine = line.trim();
+    
+    // Check if this is a comment line with command args
+    if (trimmedLine.startsWith('%%') && /%%\s+-\w/.test(trimmedLine)) {
+      // Extract the arguments part after %%
+      const argsText = trimmedLine.substring(2).trim();
+      
+      /**
+       * Regular expression to parse command-line arguments in the form of -option value, handling quoted values.
+       * 
+       * Pattern breakdown:
+       * -(\w)            - Matches a dash followed by a single word character (the option flag), captured in group 1
+       * \s+              - Matches one or more whitespace characters after the option flag
+       * (?:              - Start of a non-capturing group for the value part
+       *   "([^"]+)"      - Matches a quoted string and captures the content in group 2
+       *   |              - OR
+       *   ([^\s"-][^\s]*) - Matches an unquoted value that doesn't start with whitespace, dash, or quote,
+       *                     and continues until whitespace is encountered, captured in group 3
+       * )                - End of non-capturing group
+       * (?=\s+-\w|\s*$)  - Positive lookahead to ensure we're at the end of this argument:
+       *                     either followed by whitespace and another flag, or at the end of the string
+       * 
+       * g                - Global flag to match all occurrences in the string
+       * 
+       * @type {RegExp}
+       */
+      const argRegex = /-(\w)\s+(?:"([^"]+)"|([^\s"-][^\s]*))(?=\s+-\w|\s*$)/g;
+      let argMatch;
+      
+      while ((argMatch = argRegex.exec(argsText)) !== null) {
+        const flag = `-${argMatch[1]}`; 
+        // Value will be either the quoted value (group 2) or the unquoted value (group 3)
+        const value = argMatch[2] !== undefined ? argMatch[2] : argMatch[3];
+        
+        console.log(`Found command line argument: ${flag} ${value}`);
+        
+        // Special handling for output file name (-o)
+        if (flag === '-o' && !value.includes('/') && !value.includes('\\')) {
+          // Remove file extension if present
+          fileName = value.replace(/\.(png|svg|pdf|mmd)$/i, '');
+          // Don't add to customArgs since we're handling it specially
+        } else {
+          // Store the argument for later use
+          customArgs[flag] = value;
         }
       }
       
-      // If no filename found, use default naming
-      if (!fileNameFound) {
-        fileName = `mermaid-${counter}`;
+      // We've found and processed a command line, break out of the loop
+      break;
+    }
+  }
+  
+  return { fileName, customArgs };
+}
+
+/**
+ * Save mermaid code to a file
+ * @param {string} mermaidCode - Mermaid diagram code
+ * @param {string} mmdFilePath - Path to save the .mmd file
+ */
+function saveMermaidCodeToFile(mermaidCode, mmdFilePath) {
+  fs.writeFileSync(mmdFilePath, mermaidCode);
+  console.log(`${fs.existsSync(mmdFilePath) ? 'Updated' : 'Created'} ${mmdFilePath}`);
+}
+
+/**
+ * Generate PNG from mermaid code using mmdc
+ * @param {string} mmdFilePath - Path to the .mmd file
+ * @param {string} pngFilePath - Path to save the PNG file
+ * @param {Object} customArgs - Custom command line arguments
+ * @param {string} fileName - Name of the file for logging
+ * @returns {boolean} - true if successful, false otherwise
+ */
+function generatePng(mmdFilePath, pngFilePath, customArgs, fileName) {
+  console.log(`\nGenerating PNG for ${fileName}...`);
+  
+  // Use locally installed mmdc from node_modules
+  const mmdc_path = path.join(process.cwd(), 'node_modules', '.bin', 'mmdc');
+  
+  // Start with default command
+  let mmdc_command = `"${mmdc_path}" -i "${mmdFilePath}" -o "${pngFilePath}"`;
+  
+  // Apply custom arguments if provided
+  for (const [flag, value] of Object.entries(customArgs)) {
+    // Skip -o flag if it doesn't contain slashes (already handled in file naming)
+    if (flag === '-o' && !value.includes('/') && !value.includes('\\')) {
+      continue;
+    }
+    
+    // Replace the default arg with the custom one
+    const flagRegex = new RegExp(`${flag}\\s+[^-]+`);
+    if (mmdc_command.match(flagRegex)) {
+      mmdc_command = mmdc_command.replace(flagRegex, `${flag} ${value}`);
+    } else {
+      // Add new argument
+      mmdc_command += ` ${flag} ${value}`;
+    }
+  }
+  
+  // Execute the mmdc command
+  try {
+    console.log(`\nExecuting: ${mmdc_command}\n`);
+    execSync(mmdc_command, { stdio: 'inherit' });
+    console.log(`Generated ${pngFilePath}`);
+    return true;
+  } catch (err) {
+    console.error(`Error generating diagram ${fileName}:`, err.message);
+    console.error(`Make sure @mermaid-js/mermaid-cli is installed in this project using packages.json (yarn install)`);
+    return false;
+  }
+}
+/**
+ * Update markdown content by replacing mermaid blocks with image references
+ * @param {string} mdContent - Original markdown content
+ * @param {Array} fileChanges - Array of changes to apply
+ * @param {string} mdFilePath - Path to the markdown file
+ * @returns {number} - Number of changes applied
+ */
+function updateMarkdown(mdContent, fileChanges, mdFilePath) {
+  let modifiedMdContent = mdContent;
+  
+  // Apply all replacements to the markdown content
+  for (const change of fileChanges) {
+    modifiedMdContent = modifiedMdContent.replace(change.original, change.replacement);
+  }
+  
+  // Write the modified content back if there were changes
+  if (modifiedMdContent !== mdContent) {
+    fs.writeFileSync(mdFilePath, modifiedMdContent);
+    console.log(`Updated ${mdFilePath} with ${fileChanges.length} image references`);
+  }
+  
+  return fileChanges.length;
+}
+
+/**
+ * Extract and process Mermaid diagrams from a Markdown file using mermaid-cli
+ * @param {string} mdFilePath - Path to the Markdown file
+ * @returns {Promise<number>} - Number of diagrams processed
+ */
+async function processMermaidDiagrams(mdFilePath) {
+  // Read the markdown file
+  const mdContent = fs.readFileSync(mdFilePath, 'utf8');
+  
+  // Setup directories
+  const { mdDir, mermaidDir, assetsDir } = setupDirectories(mdFilePath);
+  
+  // Find all mermaid code blocks
+  const matches = findMermaidBlocks(mdContent);
+  if (matches.length === 0) {
+    return 0;
+  }
+  
+  try {
+    let counter = 1;
+    let fileChanges = [];
+    
+    for (const match of matches) {
+      const mermaidCode = match.code;
+      const fullMatch = match.fullMatch;
+      
+      // Extract command arguments
+      const { fileName, customArgs } = extractCommandArgs(mermaidCode, counter);
+      if (!fileName.startsWith('mermaid-')) {
+        // If a custom filename was found, don't increment counter
+      } else {
+        // If default filename was used, increment counter
         counter++;
       }
-      
+
       const mmdFilePath = path.join(mermaidDir, `${fileName}.mmd`);
       const pngFilePath = path.join(assetsDir, `${fileName}.png`);
       const relativePngPath = './' + path.relative(mdDir, pngFilePath).replace(/\\/g, '/');
-      
-      // Always save/overwrite mermaid code to .mmd file
-      fs.writeFileSync(mmdFilePath, mermaidCode);
-      console.log(`${fs.existsSync(mmdFilePath) ? 'Updated' : 'Created'} ${mmdFilePath}`);
-      
-      // Always generate PNG (even if .mmd exists) to ensure it's up to date
-      console.log(`Generating PNG for ${fileName}...`);
-      
-      // Create a new page
-      const page = await browser.newPage();
-      
-      // Load mermaid renderer
-      const html = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-          <style>
-            body { margin: 0; padding: 10px; }
-            .mermaid { display: inline-block; }
-          </style>
-        </head>
-        <body>
-          <div class="mermaid">
-            ${mermaidCode}
-          </div>
-          <script>
-            mermaid.initialize({
-              startOnLoad: true,
-              theme: 'default'
-            });
-          </script>
-        </body>
-        </html>
-      `;
-      
-      await page.setContent(html);
-      
-      // Wait for mermaid to render
-      await page.waitForSelector('.mermaid svg');
-      
-      // Take screenshot of the diagram
-      const element = await page.$('.mermaid');
-      await element.screenshot({
-        path: pngFilePath,
-        omitBackground: true
-      });
-      
-      console.log(`Generated ${pngFilePath}`);
+
+      // Save mermaid code to .mmd file
+      saveMermaidCodeToFile(mermaidCode, mmdFilePath);
+
+      // Generate PNG using mmdc
+      const success = generatePng(mmdFilePath, pngFilePath, customArgs, fileName);
+
+      if (!success) {
+        continue; // Skip to next diagram if there was an error
+      }
       
       // Add to changes list
       const imageMarkdown = `![${fileName}](${relativePngPath})`;
@@ -199,25 +296,10 @@ async function processMermaidDiagrams(mdFilePath) {
         original: fullMatch,
         replacement: imageMarkdown
       });
-      
-      await page.close();
     }
     
-    // Close the browser
-    await browser.close();
-
-    // Apply all replacements to the markdown content
-    for (const change of fileChanges) {
-      modifiedMdContent = modifiedMdContent.replace(change.original, change.replacement);
-    }
-    
-    // Write the modified content back if there were changes
-    if (modifiedMdContent !== mdContent) {
-      fs.writeFileSync(mdFilePath, modifiedMdContent);
-      console.log(`Updated ${mdFilePath} with ${fileChanges.length} image references`);
-    }
-    
-    return fileChanges.length;
+    // Update markdown content
+    return updateMarkdown(mdContent, fileChanges, mdFilePath);
   } catch (err) {
     console.error('Error processing mermaid diagrams:', err);
     return 0;

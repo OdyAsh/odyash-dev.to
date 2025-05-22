@@ -6,7 +6,7 @@ _**User**_
 
 I want to achieve the following logic (don't know if it possble or not though):
 
-1. whenever i rename a file inside #file:blog-posts folder, I want to automatically update the #file:dev-to-git.json  file so that the #sym:relativePathToArticle to adjust itself to the correct path.
+1. whenever i rename a file inside #file:the-blog-posts folder, I want to automatically update the #file:dev-to-git.json  file so that the #sym:relativePathToArticle to adjust itself to the correct path.
 
 Maybe do these using VSCode features? I'm not sure.
 
@@ -32,7 +32,7 @@ You're right, we can achieve this functionality without creating a custom extens
 
 One approach is to use VS Code's built-in tasks system to set up a file watcher that runs a script when files are renamed. Let me create this solution for you.
 
-First, let's create a script that will compare the files in the blog-posts directory with the paths in `dev-to-git.json` and update them if necessary: 
+First, let's create a script that will compare the files in the the-blog-posts directory with the paths in `dev-to-git.json` and update them if necessary: 
 
 Now, let's make sure we have the glob package installed to handle file path matching: 
 
@@ -197,7 +197,7 @@ Now, we need to install the "Run on Save" extension to make the settings work:
 
 _**User**_
 
-ok, you know what , update your entire solution , so that instead of doing vscode tasks (i.e., remove your previous code) , we instead do that logic as a step in the #file:main.yml  file, i.e., it does this check, and if files are not mapped, it attempts to map the alreading existing relativePathToArticle entries in #file:dev-to-git.json  file to the respective file paths in #file:blog-posts  folder
+ok, you know what , update your entire solution , so that instead of doing vscode tasks (i.e., remove your previous code) , we instead do that logic as a step in the #file:main.yml  file, i.e., it does this check, and if files are not mapped, it attempts to map the alreading existing relativePathToArticle entries in #file:dev-to-git.json  file to the respective file paths in #file:the-blog-posts  folder
 
 ---
 
@@ -421,7 +421,7 @@ I've added comprehensive documentation at the beginning of the `update-paths.js`
 
 1. The purpose of the script - to automatically synchronize file paths in `dev-to-git.json` when you rename or move files
 2. A detailed step-by-step explanation of how the script works:
-   - Scanning for markdown files in the blog-posts directory
+   - Scanning for markdown files in the the-blog-posts directory
    - Creating a mapping of filenames to their locations
    - Checking for mismatches between `dev-to-git.json` entries and actual file locations
    - Updating paths when files are found in different locations
@@ -459,7 +459,7 @@ I've expanded the explanation of the UPDATING step with more detailed examples t
    - This is the most common use case and works automatically
 
 2. **Path Normalization Example**:
-   - Explains how the script handles paths in `dev-to-git.json` that don't include the "blog-posts/" prefix
+   - Explains how the script handles paths in `dev-to-git.json` that don't include the "the-blog-posts/" prefix
    - Shows how it normalizes paths before searching for files
 
 3. **File Rename Limitation Example**:
@@ -476,9 +476,9 @@ ok, change in plan ? see the logic implemented in #file:update-paths.js  and spe
 
 I want you to change that to the following:
 
-we instead use fuzzy search to get the nearest match between each relative path value in #file:dev-to-git.json  to that of the actual relative paths in #file:blog-posts  , and loop over the values iin dev-to-git.json; for each value, get the highest match (if it's more than 50% match) and update it to match the highest match the returned actual relative path value in blog-posts.
+we instead use fuzzy search to get the nearest match between each relative path value in #file:dev-to-git.json  to that of the actual relative paths in #file:the-blog-posts  , and loop over the values iin dev-to-git.json; for each value, get the highest match (if it's more than 50% match) and update it to match the highest match the returned actual relative path value in the-blog-posts.
 
-Moreover, update the tasks in #file:tasks.json  so that instead of running each 10 seconds, we instead run the script whenever a user saves a .md file present in #file:blog-posts 
+Moreover, update the tasks in #file:tasks.json  so that instead of running each 10 seconds, we instead run the script whenever a user saves a .md file present in #file:the-blog-posts 
 
 ---
 
@@ -487,7 +487,7 @@ _**Assistant**_
 I'll implement the changes you requested:
 
 1. Update the path matching logic in `update-paths.js` to use fuzzy matching
-2. Modify the VS Code task to trigger on save of any Markdown file in the blog-posts directory
+2. Modify the VS Code task to trigger on save of any Markdown file in the the-blog-posts directory
 
 Let's start with updating the `update-paths.js` script: 
 ```
@@ -591,7 +591,7 @@ To make this work, you'll need to install the "Trigger Task on Save" VS Code ext
 code --install-extension philfontaine.trigger-task-on-save
 ```
 
-This extension will monitor file saves and trigger the update task whenever you save a Markdown file in the blog-posts directory.
+This extension will monitor file saves and trigger the update task whenever you save a Markdown file in the the-blog-posts directory.
 
 Would you like me to test this setup to ensure it's working correctly?
 
@@ -613,7 +613,7 @@ this part:
       if (potentialMatches.length === 1) {
          We found exactly one file with this name, assume it's a match
         const matchPath = potentialMatches[0];
-        const newPath = `blog-posts/${matchPath.replace(/\\/g, '/')}`;
+        const newPath = `the-blog-posts/${matchPath.replace(/\\/g, '/')}`;
         console.log(`Found filename match: ${relativePath} → ${newPath} (ID: ${entry.id})`);
         entry.relativePathToArticle = newPath;
         updated = true;
@@ -622,7 +622,7 @@ this part:
         console.log(`Multiple files with name "${basename}" found - selecting best fuzzy match:`);
         
          Create paths for potential matches and use fuzzy matching on them
-        const potentialFullPaths = potentialMatches.map(p => `blog-posts/${p.replace(/\\/g, '/')}`);
+        const potentialFullPaths = potentialMatches.map(p => `the-blog-posts/${p.replace(/\\/g, '/')}`);
         const { bestMatch: bestNameMatch, similarity: nameMatchSimilarity } = 
           fuzzy.findBestMatch(relativePath, potentialFullPaths);
         

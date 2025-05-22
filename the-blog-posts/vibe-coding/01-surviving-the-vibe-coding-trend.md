@@ -1,7 +1,7 @@
 ---
 published: true
 title: 'Surviving The Vibe Coding Trend'
-cover_image: 'https://raw.githubusercontent.com/odyash/odyash-dev.to/main/blog-posts/vibe-coding/assets/01-cover-image.png'
+cover_image: 'https://raw.githubusercontent.com/odyash/odyash-dev.to/master/the-blog-posts/vibe-coding/assets/01-cover-image.png'
 description: 'Surviving The Vibe Coding Trend'
 tags: vibecoding, githubcopilot, ai, productivity
 series: 'Vibe Coding'
@@ -233,7 +233,7 @@ App's architecture:
       1. Details: [Medium article](https://mike-vincent.medium.com/llm-mermaid-how-modern-teams-create-uml-diagrams-without-lucidchart-e54c56350804).
       2. Even the diagrams in this article are generated using mermaid `:]`.
    4. [SpecStory](https://marketplace.visualstudio.com/items?itemName=SpecStory.specstory-vscode) Extension: An IDE extension that tracks/saves your conversation's with the IDE's AI model (e.g., copilot).
-      1. For example, check out the markdown files [here](https://github.com/OdyAsh/odyash-dev.to/tree/main/.specstory/history) to see how I made this article `;]`.
+      1. For example, check out the markdown files [here](https://github.com/OdyAsh/odyash-dev.to/tree/master/.specstory/history) to see how I made this article `;]`.
    5. Use AI as your "friendly neighbourhood plumber" [2].
       1. Updated your codebase and now you're dreading the README.md and docs/*.md documentation? Just ask the AI to do it for you.
       2. Need to manually change file references? Let the AI create a VSCode task that will [automatically do this for you](../../docs/update-dev-to-git-json-upon-save.md) <3. 
@@ -277,8 +277,8 @@ Your participation is most welcome! 🔥🙌
 Then kindly correct me by:
 
 * Writing a comment ✍️
-* Or opening a PR on [GitHub](https://github.com/OdyAsh/odyash-dev.to/tree/main/blog-posts) 
-  * [Details](https://dev.to/maxime1992/manage-your-dev-to-blog-posts-from-a-git-repo-and-use-continuous-deployment-to-auto-publish-update-them-143j#:~:text=%0A%20%20%0A%20%20Found%20a%20typo%3F%0A)
+* Or opening a PR on [GitHub](https://github.com/OdyAsh/odyash-dev.to/tree/master/the-blog-posts) 
+  * [Details](https://dev.to/maxime1992/manage-your-dev-to-the-blog-posts-from-a-git-repo-and-use-continuous-deployment-to-auto-publish-update-them-143j#:~:text=%0A%20%20%0A%20%20Found%20a%20typo%3F%0A)
 
  See ya! `:]` 🙌
 

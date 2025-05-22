@@ -74,11 +74,14 @@ This ensures that:
 
 1. Scans the Markdown file for Mermaid code blocks (```mermaid)
 2. For each code block:
-   - Checks the first 5 lines for a filename pattern (e.g., `%% file name: my diagram`)
-   - If found, uses that name (sanitized) for the files, preserving spaces within the name
+   - Checks for a comment that mentions arguments to be passed to the `mmdc` command (e.g., `%% -o ai-vibe-brain-diagram.mmd -w 1920`)
+     - Details 1: the `extractCommandArgs` function in `mermaid-to-png.js` file
+     - Details 2: the `mmdc` arguments in the Mermaid CLI codebase:
+     -   https://deepwiki.com/search/tell-me-all-the-args-that-i-ca_89d7646f-4aae-4549-9100-3597fdffad44
+   - If a `-o` arg is mentioned without `/` or `\`, uses that name for the files in the corresponding `assets` folder.
    - If not found, uses a sequential number (e.g., `mermaid-1`)
    - Creates/overwrites a `.mmd` file in the `mermaid/` directory
-   - Generates a PNG image in the `assets/` directory using Puppeteer to render the diagram
+   - Generates a PNG image in the `assets/` directory using `mmdc` command to render the diagram
    - Replaces the Mermaid code block with a Markdown image reference
 
 ### Images to Mermaid
