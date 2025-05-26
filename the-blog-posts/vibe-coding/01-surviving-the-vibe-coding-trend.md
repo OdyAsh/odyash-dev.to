@@ -47,7 +47,13 @@ These `problems` *can* be categorized into multiple levels of `complexity` ...
 
 ### "Problem Complexity? Huh?"
 
-Yes, here's a simple categorization of the problems that any developer faces in terms of complexity/scope [fn.1]: 
+Yes, here's a simple categorization of the problems that any developer faces in terms of complexity/scope [fn.1]:
+
+(Shown in this order: `lvl1` -> `lvl2` -> `lvl3` -> `lvl4`)
+
+![problem-complexity-levels-diagram](./assets/problem-complexity-levels-diagram.png)
+
+Details of each level [fn.1]: 
 
 (Explained in this order: `lvl4` -> `lvl3` -> `lvl1` -> `lvl2`)
 
@@ -71,9 +77,6 @@ Yes, here's a simple categorization of the problems that any developer faces in 
    2. E.g., react/fastapi for frontend/backend, streamlit for both, etc. python as main language, uv for managing dependencies, etc.
    3. Concretely, a `lvl1` problem is basically a series of `lvl3` problems that are connected together.
 
-Illustration (Shown in this order: `lvl1` -> `lvl2` -> `lvl3` -> `lvl4`):
-
-![problem-complexity-levels-diagram](./assets/problem-complexity-levels-diagram.png)
 
 &nbsp;
 
@@ -84,8 +87,6 @@ Let's visualize how our brains process these different problem levels and when A
 ![ai-vibe-brain-diagram](./assets/ai-vibe-brain-diagram.png)
 
 Side note: Open the above image [here](https://raw.githubusercontent.com/OdyAsh/odyash-dev.to/master/the-blog-posts/vibe-coding/assets/ai-vibe-brain-diagram.png) if it's appearing blurry on `dev.to`
-
-&nbsp;
 
 Now let's break it down:
 
@@ -110,14 +111,14 @@ Now let's break it down:
          1. I.e., under-trusting your AI buddy `:[`.
    3. If you phrase your request in a very vague way, then the AI could over-simplify the solution while neglecting important corner cases. 
       1. E.g., you ask AI to return D, but you forgot to mention that D should be in a specific format, or that it should be sorted in a specific way, etc.
-         1. I.e., Assuming that your AI buddy is a mind reader `:[`.
+         1. I.e., Over-trusting your AI buddy `:[`.
 
 &nbsp;
 
 3. For `lvl1` problems: depending on the complexity of the problem you're trying to solve:
    1. For commonly known problems (e.g., "write a full web-based todo app"), it can provide a *big picture* solution (e.g., it will whip up a possible system architecture for you).
    2. For less commonly known problems, the provided *big picture* solution will be less accurate than the previous example.
-      1. E.g., if you want to create a app for Islamic prayer times, then it might propose using an outdated GitHub library that calculates prayer times, even though your solution might be better off using an online API service instead.
+      1. E.g., if you want to create a app for Islamic prayer times, then it might propose using an outdated GitHub library that **calculates** prayer times **offline**, even though your solution might be better off using an **online API** service instead.
       2. Well then how do you know which system architecture is more well suited?
          1. You look at your requirements and constraints. For example, if you know that this prayer times app will be mostly working offline, then prefer a calculation library over an online API service, etc.
       3. Therefore, you need to have a good understanding of the problem you're trying to solve, and the requirements/constraints of the system you're trying to build.
