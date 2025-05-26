@@ -13,3 +13,19 @@ The todos in this file will be written in captial if they're still not done, and
 
 Note from the future: the above steps might not closely reflect what's currently in the code, but I left them here just for you to see how I drafted my thought process back then (as I then gave them to copilot).
 -->
+
+<!-- TODO NOW:  
+   Figure out why markdown snippets like:
+
+   ```![ai-vibe-brain-diagram](./assets/ai-vibe-brain-diagram.png)```
+
+   appear in dev.to as so:
+
+   ```![ai-vibe-brain-diagram](https://raw.githubusercontent.com/OdyAsh/odyash-dev.to/master/e-blog-posts/vibe-coding/assets/ai-vibe-brain-diagram.png)```
+
+   (i.e., without the first 2 letters of `the-blog-posts`).
+
+   by inspecting the git-to-dev repo:
+
+   https://github.com/maxime1992/dev-to-git/blob/cb9bca909e103ba3eae3efca288f89693a0d5d44/src/article.ts#L65
+-->

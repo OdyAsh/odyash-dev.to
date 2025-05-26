@@ -83,6 +83,8 @@ Let's visualize how our brains process these different problem levels and when A
 
 ![ai-vibe-brain-diagram](./assets/ai-vibe-brain-diagram.png)
 
+Side note: Open the above image [here](https://raw.githubusercontent.com/OdyAsh/odyash-dev.to/master/the-blog-posts/vibe-coding/assets/ai-vibe-brain-diagram.png) if it's appearing blurry on `dev.to`
+
 &nbsp;
 
 Now let's break it down:
