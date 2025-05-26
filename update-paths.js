@@ -161,13 +161,15 @@ devToGitData.forEach(entry => {
   // Normalize the path (replace backslashes with forward slashes)
   const normalizedPath = entry.relativePathToArticle.replace(/\\/g, '/');
   
-  // Make sure the path starts with the-blog-posts/
-  const relativePath = normalizedPath.startsWith('the-blog-posts/') 
+  // Make sure the path starts with ./the-blog-posts/
+  const relativePath = normalizedPath.startsWith('./the-blog-posts/') 
     ? normalizedPath 
-    : `the-blog-posts/${normalizedPath}`;
+    : normalizedPath.startsWith('the-blog-posts/')
+      ? `./${normalizedPath}`
+      : `./the-blog-posts/${normalizedPath.replace(/^the-blog-posts\//, '')}`;
   
   // Get the path relative to the-blog-posts directory
-  const expectedRelativePath = relativePath.replace('the-blog-posts/', '');
+  const expectedRelativePath = relativePath.replace('./the-blog-posts/', '');
   // First check if the file exists at the exact path
   // Our findFiles function already returns paths with forward slashes
   if (markdownFiles.includes(expectedRelativePath)) {
@@ -181,7 +183,7 @@ devToGitData.forEach(entry => {
   } else {
     // File doesn't exist at the specified path - use fuzzy matching to find the best match
     console.log(`Warning: File not found at path ${relativePath} (ID: ${entry.id})`);    // Create full paths for all markdown files for better matching
-    const fullMarkdownPaths = markdownFiles.map(file => `the-blog-posts/${file}`);
+    const fullMarkdownPaths = markdownFiles.map(file => `./the-blog-posts/${file}`);
 
     // Use fuzzy matching to find the best match
     const { bestMatch, similarity_score } = fuzzy.findBestMatch(relativePath, fullMarkdownPaths);
