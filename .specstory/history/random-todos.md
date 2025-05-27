@@ -17,9 +17,12 @@ Note from the future: the above steps might not closely reflect what's currently
 <!-- TODO LATER:  
    Checkout markdown -> linkedin and (optionally quarto) logic:
 
+   https://dev.to/thegreatpaul/how-to-automatically-publish-on-linkedin-a-step-by-step-guide-2b8o
+   
    https://www.perplexity.ai/search/i-want-to-use-the-following-te-xpDyov6.RSqqwJyaS2opXQ?2=d
 
    https://www.meyerperin.com/posts/2022-06-27-automatically-posting-to-linkedin.html
 
    https://nickleeder.com/markedown-linkedin/
+   
 -->
