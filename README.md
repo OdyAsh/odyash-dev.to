@@ -121,3 +121,13 @@ rm yarn.lock  # or del yarn.lock on Windows
 # Install dependencies (this will create a new yarn.lock with latest versions)
 yarn install
 ```
+
+## Side Note - Other Platforms
+
+I Researched on having a markdown -> LinkedIn automation flow, but my search results weren't that fruitful.
+
+These are the 3 sources I have right now which I may use in the future if I were to implement such a flow:
+
+1. https://www.perplexity.ai/search/i-want-to-use-the-following-te-xpDyov6.RSqqwJyaS2opXQ?2=d
+2. https://www.meyerperin.com/posts/2022-06-27-automatically-posting-to-linkedin.html
+3. https://nickleeder.com/markedown-linkedin/
