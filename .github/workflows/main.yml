@@ -26,10 +26,10 @@ jobs:
       #   run: yarn run prettier:check
       - name: Readme check
         run: yarn run embedme:check
-      - name: Apply dev.to-compatible TOC
-        run: yarn run apply-devto-toc
       - name: Run TOC conversion tests
         run: node tests/test-toc-scripts.js
+      - name: Apply dev.to-compatible TOC
+        run: yarn run apply-devto-toc
       - name: Devto
         env:
           DEV_TO_GIT_TOKEN: ${{ secrets.DEV_TO_GIT_TOKEN }}

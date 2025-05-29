@@ -60,18 +60,15 @@ The `.github/workflows/main.yml` pipeline:
 flowchart TD
     A[Push to GitHub] --> B[CI Pipeline Starts]
     B --> C[Install Dependencies]
-    C --> D["Convert TOCs to dev.to format"]
-    D --> E[Publish to dev.to]
-    E --> F["Restore original TOCs"]
-    F --> G[CI Pipeline Ends]
+    C --> D[Test TOC-conversion scripts]
+    D --> E["Convert TOCs to dev.to format"]
+    E --> F[Publish to dev.to]
+    F --> G["Restore original TOCs"]
+    G --> H[CI Pipeline Ends]
 
     subgraph File Processing
         D
-        F
-    end
-
-    subgraph Scripts
-        D
-        F
+        E
+        G
     end
 ```
