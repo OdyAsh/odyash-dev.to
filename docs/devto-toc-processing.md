@@ -42,12 +42,13 @@ A set of scripts and a CI pipeline were implemented to:
 The `.github/workflows/main.yml` pipeline:
 - Runs on every push
 - Installs dependencies
+- Runs the TOC conversion tests (`tests/test-toc-scripts.js`) to verify the logic end-to-end
 - Runs `apply-devto-toc-to-md-files.js` to convert TOCs before publishing
 - Publishes to dev.to
 - Runs `return-md-files-to-original-toc.js` to restore original TOCs
 
 ## When Is This Used?
-- Every time you push to the repository, the CI pipeline ensures your markdown files are published to dev.to with the correct TOC format, and your local files are left unchanged.
+- Every time you push to the repository, the CI pipeline ensures your markdown files are published to dev.to with the correct TOC format, and your local files are left unchanged. The TOC conversion logic is tested on every push to catch regressions early.
 
 ## For More Details
 - See the code comments in each script for a step-by-step explanation of the logic and transformation.

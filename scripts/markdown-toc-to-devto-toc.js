@@ -42,7 +42,9 @@ function convertTocLinks(tocBlock) {
         // Collapse 2+ hyphens to 1
         newUri = newUri.replace(/-+/g, '-');
         newUri = '#' + newUri.replace(/^#/, ''); // Ensure it starts with #
-        console.log(`[markdown-toc-to-devto-toc] Converted: [${alt}](${uri}) => [${alt}](${newUri})`);
+        if (uri !== newUri) {
+            console.log(`[markdown-toc-to-devto-toc] Converted: [${alt}](${uri}) => [${alt}](${newUri})`);
+        }
         return `[${alt}](${newUri})`;
     });
     return result;

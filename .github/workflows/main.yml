@@ -1,7 +1,7 @@
 # GitHub Actions docs
 # https://help.github.com/en/articles/about-github-actions
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
-name: CI
+name: Dev.to Blog Publish
 
 on: [push]
 
@@ -28,6 +28,8 @@ jobs:
         run: yarn run embedme:check
       - name: Apply dev.to-compatible TOC
         run: yarn run apply-devto-toc
+      - name: Run TOC conversion tests
+        run: node tests/test-toc-scripts.js
       - name: Devto
         env:
           DEV_TO_GIT_TOKEN: ${{ secrets.DEV_TO_GIT_TOKEN }}

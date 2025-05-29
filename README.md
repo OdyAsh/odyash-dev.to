@@ -149,6 +149,7 @@ For detailed information and to set it up, see the [Mermaid diagram processing d
 ### Adjusting TOCs to be Dev.to Compatible
 
 When publishing markdown blog posts to dev.to, the Table of Contents (TOC) anchor links must follow dev.to's specific rules (e.g., no double hyphens, special handling for code/backtick content, and removal of invisible/emoji characters). This repository includes a fully automated pipeline that:
+- Runs end-to-end TOC conversion tests (`tests/test-toc-scripts.js`) on every push to catch regressions early
 - Converts all TOCs to dev.to-compatible format before publishing
 - Restores the original TOCs after publishing, so your local files remain unchanged
 
