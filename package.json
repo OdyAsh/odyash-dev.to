@@ -16,7 +16,9 @@
     "dev-to-git": "dev-to-git",
     "update-paths": "node update-paths.js",
     "mermaid-to-png": "node scripts/mermaid-to-png.js",
-    "png-to-mermaid": "node scripts/png-to-mermaid.js"
+    "png-to-mermaid": "node scripts/png-to-mermaid.js",
+    "apply-devto-toc": "node scripts/apply-devto-toc-to-md-files.js",
+    "return-original-toc": "node scripts/return-md-files-to-original-toc.js"
   },
   "dependencies": {
     "dev-to-git": "1.4.10",

@@ -26,7 +26,11 @@ jobs:
       #   run: yarn run prettier:check
       - name: Readme check
         run: yarn run embedme:check
+      - name: Apply dev.to-compatible TOC
+        run: yarn run apply-devto-toc
       - name: Devto
         env:
           DEV_TO_GIT_TOKEN: ${{ secrets.DEV_TO_GIT_TOKEN }}
         run: yarn run dev-to-git
+      - name: Restore original TOC
+        run: yarn run return-original-toc

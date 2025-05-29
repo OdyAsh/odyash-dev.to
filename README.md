@@ -1,3 +1,25 @@
+TOC:
+
+- [One way publishing of your blog posts from a git repo to dev.to](#one-way-publishing-of-your-blog-posts-from-a-git-repo-to-devto)
+  - [First, what is dev.to?](#first-what-is-devto)
+  - [Why would I want to put all my blog posts on a git repo?](#why-would-i-want-to-put-all-my-blog-posts-on-a-git-repo)
+  - [How do I choose which files I want to publish?](#how-do-i-choose-which-files-i-want-to-publish)
+    - [Automatic Path Synchronization](#automatic-path-synchronization)
+  - [How can I find the ID of my blog post on dev.to?](#how-can-i-find-the-id-of-my-blog-post-on-devto)
+  - [How do I configure every blog post individually?](#how-do-i-configure-every-blog-post-individually)
+  - [How do I add images to my blog posts?](#how-do-i-add-images-to-my-blog-posts)
+  - [How to setup CI for auto deploying the blog posts?](#how-to-setup-ci-for-auto-deploying-the-blog-posts)
+  - [Installation \& Setup](#installation--setup)
+    - [Prerequisites](#prerequisites)
+      - [Installing Yarn (if not already installed)](#installing-yarn-if-not-already-installed)
+    - [Installing Dependencies](#installing-dependencies)
+    - [Updating Dependencies](#updating-dependencies)
+  - [Implementation Notes](#implementation-notes)
+    - [Processing Mermaid in md Files](#processing-mermaid-in-md-files)
+    - [Adjusting TOCs to be Dev.to Compatible](#adjusting-tocs-to-be-devto-compatible)
+    - [Publishing to Other Platforms](#publishing-to-other-platforms)
+
+
 # One way publishing of your blog posts from a git repo to dev.to
 
 This repo is just a template to help you get started quickly. If you're looking for an example of a repo using it, have a look here: https://github.com/maxime1992/my-dev.to
@@ -40,15 +62,6 @@ There's a `dev-to-git.json` file where you can define an array of blog posts, e.
 This repository includes an automatic path synchronization system that keeps your `dev-to-git.json` file in sync with your actual markdown files. When you save a markdown file in the `the-blog-posts` directory, the system will automatically update the corresponding entries in `dev-to-git.json`.
 
 For detailed information on how this works and how to set it up, see the [automatic path synchronization documentation](docs/update-dev-to-git-json-upon-save.md).
-
-### Mermaid Diagram Processing
-
-This repository includes tools for handling Mermaid diagrams:
-- Automatically converts Mermaid code blocks to PNG images before pushing to dev.to
-- Restores the Mermaid code blocks locally for continued editing
-- Includes VS Code tasks and Git hooks to automate the process
-
-For detailed information and to set it up, see the [Mermaid diagram processing documentation](docs/mermaid-processing.md).
 
 ## How can I find the ID of my blog post on dev.to?
 
@@ -122,7 +135,26 @@ rm yarn.lock  # or del yarn.lock on Windows
 yarn install
 ```
 
-## Side Note - Other Platforms
+## Implementation Notes 
+
+### Processing Mermaid in md Files
+
+Since the original [dev-to-git repo](https://github.com/maxime1992/dev-to-git) doesn't automatically convert mermaid blocks embedded inside md files into images, this repository includes tools for handling Mermaid diagrams:
+- Automatically converts Mermaid code blocks to PNG images before pushing to dev.to
+- Restores the Mermaid code blocks locally for continued editing
+- Includes VS Code tasks and Git hooks to automate the process
+
+For detailed information and to set it up, see the [Mermaid diagram processing documentation](docs/mermaid-processing.md).
+
+### Adjusting TOCs to be Dev.to Compatible
+
+When publishing markdown blog posts to dev.to, the Table of Contents (TOC) anchor links must follow dev.to's specific rules (e.g., no double hyphens, special handling for code/backtick content, and removal of invisible/emoji characters). This repository includes a fully automated pipeline that:
+- Converts all TOCs to dev.to-compatible format before publishing
+- Restores the original TOCs after publishing, so your local files remain unchanged
+
+For a detailed explanation of the problem, the solution, the scripts involved, and the CI automation, see [docs/devto-toc-processing.md](docs/devto-toc-processing.md).
+
+### Publishing to Other Platforms
 
 I Researched on having a markdown -> LinkedIn automation flow, but my search results weren't that fruitful.
 
