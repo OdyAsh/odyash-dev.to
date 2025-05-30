@@ -1,3 +1,7 @@
+# One way publishing of your blog posts from a git repo to dev.to
+
+This repo is just a template to help you get started quickly. If you're looking for an example of a repo using it, have a look here: https://github.com/maxime1992/my-dev.to
+
 TOC:
 
 - [One way publishing of your blog posts from a git repo to dev.to](#one-way-publishing-of-your-blog-posts-from-a-git-repo-to-devto)
@@ -19,10 +23,6 @@ TOC:
     - [Adjusting TOCs to be Dev.to Compatible](#adjusting-tocs-to-be-devto-compatible)
     - [Publishing to Other Platforms](#publishing-to-other-platforms)
 
-
-# One way publishing of your blog posts from a git repo to dev.to
-
-This repo is just a template to help you get started quickly. If you're looking for an example of a repo using it, have a look here: https://github.com/maxime1992/my-dev.to
 
 ## First, what is dev.to?
 
@@ -95,11 +95,15 @@ Enjoy.
 
 ## Installation & Setup
 
+Note: you can see a detailed documentation of this repo's architecture here:
+* https://deepwiki.com/OdyAsh/odyash-dev.to
+
 ### Prerequisites
 
 First, make sure you have [Node.js](https://nodejs.org/) installed.
 
 #### Installing Yarn (if not already installed)
+
 If you don't have Yarn installed, you can install it using npm:
 
 ```bash
